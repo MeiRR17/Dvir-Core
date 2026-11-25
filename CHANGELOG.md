@@ -1,7 +1,7 @@
 ## 0.0.18 — 2026-11-25 (unreleased; runtime integration candidate)
 - Completed cursor pagination of personal-owner branches for dvir-os (310), Corpora (452) and Israel Evidence Atlas (314); PR search remains capped and source/manifest audit remains partial.
 - Integrated the 14 runtime source/test files from Agent B's exact PR #13 input SHA into the sole M00 candidate; PR #13 and its branch remain unchanged.
-- Replaced arbitrary MLX filesystem paths with opaque owner-configured environment handles; added static symlink-root and symlink-ancestor denial. Descriptor-relative/openat race protection remains open; host use is blocked.
+- Replaced arbitrary MLX filesystem paths with opaque owner-configured environment handles; added static symlink-root and symlink-ancestor denial. Added a descriptor-anchored implementation/acceptance design; descriptor-relative/openat race protection remains unimplemented and host use is blocked.
 - Replaced caller-supplied Ollama ports with an owner-configured endpoint resolver; retained fixed-loopback, GET-only, bounded metadata requests and sanitized resolver failures.
 - Bound benchmark receipts to a private execution fingerprint (model digest, quantization, context size, KV-cache digest, runtime version and host digest); added exact write-once readback recovery for ambiguous publication.
 - Legacy benchmark receipts without execution identity now fail closed; no automatic migration, retry, overwrite or deletion.
