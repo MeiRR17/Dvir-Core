@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   inventory-storage:
-    name: Inventory and authenticated storage
+    name: Inventory, runtime and authenticated storage
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -44,10 +44,10 @@ jobs:
           npm --version
           "$RUNNER_TEMP/dvir-core-tools/node_modules/.bin/tsc" --version
 
-      - name: Run all inventory and storage tests
-        run: node --experimental-strip-types --test src/inventory/*.test.ts src/storage/*.test.ts
+      - name: Run all inventory, runtime and storage tests
+        run: node --experimental-strip-types --test src/inventory/*.test.ts src/runtime/*.test.ts src/storage/*.test.ts
 
-      - name: Strict typecheck all inventory and storage TypeScript
+      - name: Strict typecheck all inventory, runtime and storage TypeScript
         run: |
           "$RUNNER_TEMP/dvir-core-tools/node_modules/.bin/tsc" \
             --noEmit \
@@ -58,4 +58,4 @@ jobs:
             --allowImportingTsExtensions \
             --typeRoots "$RUNNER_TEMP/dvir-core-tools/node_modules/@types" \
             --types node \
-            src/inventory/*.ts src/storage/*.ts
+            src/inventory/*.ts src/runtime/*.ts src/storage/*.ts
