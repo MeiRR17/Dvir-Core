@@ -22,7 +22,7 @@ function canonical(value: unknown): BenchmarkReceipt {
 // Authentication protects stored bytes, not the truth of upstream measurements.
 export function openBenchmarkReceiptStore(directory: string, scope: string, secret: Uint8Array) {
   if (typeof directory !== 'string' || !matches(scope, scopePattern) || !(secret instanceof Uint8Array) || secret.byteLength < 32) throw new Error('invalid benchmark store configuration');
-  const files = openAuthenticatedJsonFileStore(directory, secret, 'dvir-core:benchmark-receipt:v1\\0', maxBytes);
+  const files = openAuthenticatedJsonFileStore(directory, secret, 'dvir-core:benchmark-receipt:v1\0', maxBytes);
   const file = (handle: string) => { if (!matches(handle, handlePattern)) throw new Error('invalid benchmark handle'); return handle.slice(10) + '.json'; };
   const fresh = (r: BenchmarkReceipt, now: number) => time(now) && r.scope === scope && r.observedAt <= now && now < r.expiresAt;
   return {
