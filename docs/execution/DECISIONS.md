@@ -10,3 +10,5 @@
 
 - D008 (0.0.3): enforce per-page deadline (1–60000 ms; default 10000) with AbortSignal; stop on failure with prior valid coverage; no retries. Reader may ignore cancellation, so never claim transport actually stopped. Only typed transport errors can classify rate limits; no raw error detail in results.
 - D009: reviewed parallel PR #3 reducer; prefer stable ID and strict foreign-owner rejection in #4; archive-count capability may be integrated separately after review. Both PRs preserved.
+
+- D010 (0.0.4): preserve PR #4 API and deadline semantics; incorporate case-insensitive owner matching and typed denial from PR #6 without copying the parallel collector. Keep strict cross-owner rejection and short-page validation. PRs #3/#5/#6 remain untouched; no automatic merge or closure. Archive counts deferred to an explicit contract review.
