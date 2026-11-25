@@ -109,3 +109,8 @@
 - Selected branch/PR metadata snapshots: Dvir OS, Corpora, IEA and Master-Courses reached the 100-result cap; full branch/PR reconciliation is not claimed. PR #326 (Dvir OS), #451 (Corpora), #75 (Neo4j), #21 (Blog), #57 (Music), #44 (Timeline) and #7 (Apex) were observed as Draft. No merge readiness is inferred from mergeable metadata.
 - Exact source blob references and boundary decisions are recorded in docs/execution/REPOSITORY_AUDIT.md. No full raw repository inventory, private IDs, visibility values, raw connector records, organization data or host data were written to the report; only selected integration-boundary names and public-safe source blob references are retained.
 - This closes only the initial enumeration/screening pass. Per-repository source/manifest/test coverage, empty-repository resolution, full branch pagination and owner-approved private evidence retention remain open.
+
+## Toolchain alignment gate
+- Dvir OS R1 declares Node >=22.18 and its lock resolves TypeScript 5.9.3 plus @types/node 22.20.5. Autopilot separately declares Node >=24; no shared runtime assumption is allowed.
+- The local targeted run was Node 22.16.0 / TypeScript 5.8.3 / @types/node 25.1.0, below/different from the Dvir OS baseline. It is not cross-project compatibility evidence.
+- Added .github/workflows/m00-candidate.yml to run every inventory/storage test and strict typecheck using Node 22.18.0, TypeScript 5.9.3 and @types/node 22.20.5. YAML syntax parsed locally. GitHub Actions result is NOT_OBSERVED as of this handoff; do not mark CI PASS until a run for the current candidate SHA is fetched.
