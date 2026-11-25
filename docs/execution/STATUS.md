@@ -1,0 +1,7 @@
+# Execution status — v0.0.1
+M00.1 — owner-scoped offline inventory reducer: IMPLEMENTED / FIXTURE_PASS.
+The TypeScript reducer counts unique personal repositories, excludes other owners, tracks explicitly confirmed pagination and rejects conflicting observations. It does not fetch data or emit repository names. Test source: tests/inventory.test.ts.
+Evidence (isolated Linux test environment, synthetic inputs only): Node 22.16.0, TypeScript 5.8.3; node --experimental-strip-types --test tests/inventory.test.ts: 5/5 PASS; tsc --noEmit --strict --target ES2022 src/inventory.ts: PASS. Source blobs: 95c17e3e0f87daccbaa5a1f0f35c51dc9abfa142, 6437e7c8ee86daa4bd08d63c0145edb9c5820506. No live Core runtime or integration claimed.
+M00 remains incomplete: authorized server project mapping and private evidence retention need verification; live pagination adapter, repository-by-repository decision inventory and model benchmarking pending. No external systems modified. Public repository: keep real inventory, private host observations, tokens and raw logs out of Git.
+Next: M00.2 implement bounded read-only paginated adapter using injected transport and mocked responses; verify termination, errors, rate limits, and partial coverage. Do not add credentials or run against private data in CI.
+Base plan: b0e52cf76f688de52eb1c9a9d21786c12bcb7c0e. Stacked draft PR only; owner review required before merge.
