@@ -32,7 +32,10 @@ test('unsafe names, malformed envelopes, symlinks and oversized files fail close
 test('symlinked store root is rejected', () => fixture(root => {
   const alias = root + '-alias';
   symlinkSync(root, alias);
-  try { assert.throws(() => openAuthenticatedJsonFileStore(alias, key, 'domain', 4096)); }
+  try {
+    assert.throws(() => openAuthenticatedJsonFileStore(alias, key, 'domain', 4096));
+    assert.throws(() => openAuthenticatedJsonFileStore(alias + '/', key, 'domain', 4096));
+  }
   finally { rmSync(alias, { force: true }); }
 }));
 
