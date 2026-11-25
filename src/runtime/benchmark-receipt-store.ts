@@ -1,6 +1,6 @@
 import { AuthenticatedStoreWriteError, openAuthenticatedJsonFileStore } from '../storage/authenticated-json-file-store.ts';
 export type BenchmarkReceipt = Readonly<{ handle: string; scope: string; revision: string; workloadDigest: string; executionDigest: string; provider: 'ollama' | 'mlx'; source: 'local'; measurementDigest: string; exitCode: 0; observedAt: number; expiresAt: number }>;
-export type BenchmarkWriteOutcome = 'written' | 'published_unconfirmed' | 'observed_after_error' | 'unconfirmed';
+export type BenchmarkWriteOutcome = 'written' | 'durable_cleanup_warning' | 'published_unconfirmed' | 'observed_after_error' | 'unconfirmed';
 const handlePattern = /^benchmark:[a-zA-Z0-9_-]{1,80}$/;
 const scopePattern = /^[a-zA-Z0-9_-]{1,80}$/;
 const sha = /^[a-f0-9]{40}$/;
@@ -54,6 +54,7 @@ export function writeBenchmarkReceiptOnce(store: Pick<BenchmarkReceiptStore, 'pu
     let observed: BenchmarkReceipt | undefined;
     try { observed = store.read(expected.handle, now); } catch { return 'unconfirmed'; }
     if (!observed || JSON.stringify(observed) !== JSON.stringify(expected)) return 'unconfirmed';
+    if (error instanceof AuthenticatedStoreWriteError && error.publication === 'durable') return 'durable_cleanup_warning';
     if (error instanceof AuthenticatedStoreWriteError && error.publication === 'published_unconfirmed') return 'published_unconfirmed';
     return 'observed_after_error';
   }
