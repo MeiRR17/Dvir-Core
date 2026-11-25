@@ -1,0 +1,78 @@
+name: M00 candidate verification
+
+on:
+  push:
+    branches:
+      - integration/m00-consolidated-20261125
+    paths:
+      - 'src/**'
+      - 'package.json'
+      - '.github/workflows/m00-candidate.yml'
+  pull_request:
+    branches:
+      - feat/m00-inventory-0.0.1
+    paths:
+      - 'src/**'
+      - 'package.json'
+      - '.github/workflows/m00-candidate.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: m00-candidate
+  cancel-in-progress: true
+
+jobs:
+  inventory-storage:
+    name: Inventory, runtime and authenticated storage
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout candidate
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set compatible Node runtime
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22.18.0
+          package-manager-cache: false
+
+      - name: Install pinned typecheck tools outside the repository
+        id: install_typecheck_tools
+        run: |
+          npm install \
+            --prefix "$RUNNER_TEMP/dvir-core-tools" \
+            --no-save \
+            --no-package-lock \
+            --ignore-scripts \
+            --no-audit \
+            --no-fund \
+            typescript@5.9.3 @types/node@22.20.5
+
+      - name: Report toolchain
+        run: |
+          node --version
+          npm --version
+          "$RUNNER_TEMP/dvir-core-tools/node_modules/.bin/tsc" --version
+
+      - name: Run inventory and authenticated storage tests (Agent A)
+        run: npm run test:inventory-storage
+
+      - name: Run local runtime tests (Agent B)
+        run: npm run test:runtime
+
+      - name: Strict typecheck all inventory, runtime and storage TypeScript
+        if: ${{ always() && steps.install_typecheck_tools.outcome == 'success' }}
+        run: |
+          "$RUNNER_TEMP/dvir-core-tools/node_modules/.bin/tsc" \
+            --noEmit \
+            --strict \
+            --erasableSyntaxOnly \
+            --target es2022 \
+            --module nodenext \
+            --allowImportingTsExtensions \
+            --typeRoots "$RUNNER_TEMP/dvir-core-tools/node_modules/@types" \
+            --types node \
+            src/inventory/*.ts src/runtime/*.ts src/storage/*.ts

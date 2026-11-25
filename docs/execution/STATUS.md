@@ -1,4 +1,4 @@
-# Execution status — 0.0.16 (2026-11-25)
+# Execution status — 0.0.18 (2026-11-25)
 Base: reviewed master-plan commit b0e52cf76f688de52eb1c9a9d21786c12bcb7c0e; stacked on draft plan PR #2, not main. Foundation PR #1 also pending.
 
 | Work package | State | Acceptance |
@@ -22,7 +22,36 @@ Base: reviewed master-plan commit b0e52cf76f688de52eb1c9a9d21786c12bcb7c0e; stac
 | M00.5j private evidence binding and bounded intake | IMPLEMENTED / FIXTURE_PASS | 17 targeted tests, exact source/digest/approval binding, batch limits, stored receipt integration |
 | M00.5k atomic prepared receipt persistence | IMPLEMENTED / FIXTURE_PASS | five new tests, HMAC-protected binding, reopen and revocation fixture |
 | M00.5l prepared audit entry point | IMPLEMENTED / FIXTURE_PASS | 9 new tests, 91 Node test entries across 17 local test files; explicit trusted authority contract |
-| M00.6 actual model/runtime inventory | PLANNED (partial probe) | approved runtime metadata and benchmark; no inference benchmark yet |
+| M00.6 runtime module integration | IMPLEMENTED / NOT_RUN | 14 runtime source/test files integrated from B's exact input; resolver, execution fingerprint and write-once recovery hardened; integrated tests/typecheck not run |
+| M00.6 host qualification | OWNER_BLOCKED | Core terminal mapping absent; no live Ollama/MLX probe, model load or inference |
 | M01–M12 | PLANNED | dependency gates in master plan |
 
-Next exact task: perform the real repository decision/source audit in read-only mode, record public-safe coverage and unresolved decisions, and review the remaining M00 acceptance gates. Do not add further receipt abstractions unless a concrete acceptance failure requires them. Actual authority implementation, approved retention, Core terminal mapping, live adapter execution and model qualification remain open. M01 acceptance gated. No merge or release.
+## 0.0.18 — runtime integration candidate
+
+| Work package | State | Acceptance |
+|---|---|---|
+| M00.5m shared authenticated storage integration | IMPLEMENTED / FIXTURE_PASS | v1 receipt envelope and HMAC domain preserved; prepared binding retained; fault outcomes tested |
+| M00.5n PR #3/#5–#12 reconciliation | IMPLEMENTED / REVIEW_PENDING | file-level decisions in RECONCILIATION.md; no duplicate reducer/wrapper imported |
+| M00.5o owner and cancellation hardening | IMPLEMENTED / FIXTURE_PASS | case-insensitive requested-owner login only; typed denied; late connector response discarded |
+| M00.5p targeted candidate validation | FIXTURE_PASS | 39 Node test entries and strict typecheck of 21 files in isolated Linux fixture; not full regression |
+| M00.5q personal repository screening | PARTIAL / SCREENING | 83/83 personal-owner records enumerated; 69 README paths returned (one blank), 14 no-README paths (6 empty repos, 8 non-empty without README); see README_GAP_FOLLOWUP.md; high-activity branch pagination complete; PR search and source/manifest audit remain partial |
+| M00.5r pinned candidate CI | PASS | Run #123 on b81bc994a0d84dd758a2af916b221083fc6c28a3: inventory/storage 105/105, runtime 71/71, strict TypeScript 0 diagnostics; all workflow steps PASS. See CI_RUN_123.md. |
+| M00.6a PR #13 runtime integration | IMPLEMENTED / CI_PASS / REVIEW_PENDING | 14 runtime source/test files integrated from B SHA; A hardened three trust/recovery contracts and corrected two integration-introduced test delimiters; CI #123 runtime 71/71 and strict TypeScript pass; B read-only trust-boundary review pending |
+| M00.6b runtime acceptance | PARTIAL / NOT_RUN | MLX static symlink-root/ancestor denial and owner resolver; Ollama trusted port resolver; execution fingerprint; benchmark write-once recovery; TOCTOU and actual host qualification remain open |
+| M00.4 Core terminal mapping | OWNER_BLOCKED | terminal connector still advertises Music and DvirStudio only |
+
+Next exact task: obtain Agent B's ACK and read-only review of the integrated runtime trust boundaries. The candidate fixture suites and strict TypeScript pass on exact SHA b81bc994a0d84dd758a2af916b221083fc6c28a3. Resolve the MLX descriptor-relative path race before any host probe. MLX descriptor-relative race protection, Core terminal mapping, private retention/key approval, complete source/manifest audit and actual runtime qualification remain blockers. M00 remains incomplete; M01 gated. No merge, deployment or release. 
+Current integration pointer: draft PR #15, based on PR #4 head d729710f8eb59d70aea978cfab3d8c594ec9acfc. Prior tested source snapshot af5eafddf7accf069dd4993ec9502b265fec8160 covers the earlier inventory/storage fixture only. Runtime integration source snapshot b0851df05ba37f3ecf32f5b1f071fcedbf1115a9 includes the 14 runtime files, MLX root guard and receipt publication-outcome correction; runtime tests and strict typecheck on this tree are NOT_RUN. PR metadata is authoritative for the current candidate HEAD and commit count. Draft only; no merge.
+
+Receipt publication outcome correction is included in the latest source snapshot: durable-after-cleanup-error is not downgraded to generic observed readback. Two focused tests added; NOT_RUN. No CI pass claimed.
+
+MLX security handoff: descriptor-anchored implementation and Linux + macOS/APFS fixture qualification are still pending with Agent B. The acceptance design is in `docs/execution/MLX_DESCRIPTOR_BOUNDARY.md`; it is not an implementation or test result.
+
+Reproducibility follow-up: root `package.json` declares `type: module` so NodeNext typechecking and the fault-test `import.meta.url` use the same ESM package boundary. `npm test` is the single full fixture command. No test/typecheck result is claimed.
+
+CI trigger follow-up: the candidate workflow is configured for pushes to the integration branch and for pull requests targeting `feat/m00-inventory-0.0.1`, with source/package/workflow path filters. The pull_request trigger remains inactive until the workflow file is present on the base branch. Push-triggered CI has been observed; run #113 is the latest ownership-split verification. No CI PASS is claimed for the full suite.
+
+
+Latest CI evidence (run #123, exact HEAD `b81bc994a0d84dd758a2af916b221083fc6c28a3`): `npm run test:inventory-storage` passed 105/105; `npm run test:runtime` passed 71/71; strict typecheck passed with zero diagnostics. See `docs/execution/CI_RUN_123.md`. The earlier run #113 is retained as pre-fix history.
+
+Owner approval register: `docs/execution/OWNER_APPROVAL_GATE.md` lists the outstanding terminal-scope, private retention/key, host-probe and actual-inference decisions. It is a decision register, not an authorization.

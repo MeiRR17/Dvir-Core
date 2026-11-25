@@ -1,3 +1,23 @@
+## 0.0.18 — 2026-11-25 (unreleased; runtime integration candidate)
+- Initial integrated CI runs exposed two extra closing parentheses introduced by Agent A's candidate test adaptation; A corrected both candidate-only delimiters without changing PR #13. The split workflow reports ownership partitions and runs strict typecheck independently. Run #123: inventory/storage 105/105 PASS; runtime 71/71 PASS; strict TypeScript 0 diagnostics; all workflow steps PASS. Pre-fix evidence: docs/execution/CI_RUN_113.md; green evidence: docs/execution/CI_RUN_123.md. No merge.
+- Completed cursor pagination of personal-owner branches for dvir-os (310), Corpora (452) and Israel Evidence Atlas (314); PR search remains capped and source/manifest audit remains partial.
+- Integrated the 14 runtime source/test files from Agent B's exact PR #13 input SHA into the sole M00 candidate; PR #13 and its branch remain unchanged.
+- Replaced arbitrary MLX filesystem paths with opaque owner-configured environment handles; added static symlink-root and symlink-ancestor denial. Added a descriptor-anchored implementation/acceptance design; descriptor-relative/openat race protection remains unimplemented and host use is blocked.
+- Replaced caller-supplied Ollama ports with an owner-configured endpoint resolver; retained fixed-loopback, GET-only, bounded metadata requests and sanitized resolver failures.
+- Bound benchmark receipts to a private execution fingerprint (model digest, quantization, context size, KV-cache digest, runtime version and host digest); added exact write-once readback recovery for ambiguous publication.
+- Legacy benchmark receipts without execution identity now fail closed; no automatic migration, retry, overwrite or deletion.
+- Preserved durable publication state when cleanup fails after fsync; added separate durable-cleanup-warning outcome and exact-readback tests.
+- Added a minimal private ESM package manifest with Node >=22.18.0 and a single `npm test` command; CI invokes that command and retains pinned strict typecheck. Added a future pull_request trigger for PR #15's base; it remains inactive until the workflow file is present on that base branch. Integrated runtime tests and strict typecheck are NOT_RUN; no CI result observed.
+- No Core-host probe, model load, inference or benchmark. M00 remains incomplete; no merge or release.
+
+## 0.0.17 — 2026-11-25 (unreleased; M00 consolidation candidate)
+- Created the single integration candidate from PR #4's exact reviewed HEAD; opened draft integration PR #15; preserved PR #4, PR #13 and all earlier draft PRs.
+- Reconciled PR #3 and #5–#12: retained A's prepared-audit contracts; adapted denied classification, case-insensitive owner normalization and late connector cancellation; superseded duplicate reducers/wrappers.
+- Integrated PR #13's authenticated JSON storage primitive while preserving the existing receipt v1 envelope/HMAC domain and A's private prepared binding.
+- Added prepared-receipt write recovery that distinguishes published_unconfirmed from durable publication and never retries or overwrites automatically.
+- Isolated Linux fixture run: 39 Node test entries passed; strict TypeScript 5.8.3 check passed for 21 source/test files; changed and critical dependency blob hashes matched GitHub.
+- Initial personal-repository screening is now recorded; full per-repository source/manifest/branch audit remains open. Added a pinned candidate workflow for Node 22.18.0 and TypeScript 5.9.3; its run is pending. Full inventory/runtime/storage regression, runtime PR #13 integration, macOS/APFS durability, Core terminal mapping, private retention approval and model qualification remain open.
+
 # Changelog
 ## 0.0.16 — 2026-11-25 (unreleased)
 - Prepared audit entry point composes connector, authenticated file receipts and explicit trusted current-context authority contract.

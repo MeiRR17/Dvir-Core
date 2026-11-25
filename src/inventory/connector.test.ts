@@ -31,3 +31,12 @@ test('wrong owner request or aborted signal never invokes connector',async()=>{
   let calls=0;const reader=connectorReader('fixture',async()=>{calls++;return envelope();});const c=new AbortController();c.abort();
   await assert.rejects(reader({...req,owner:'other'},signal));await assert.rejects(reader(req,c.signal));assert.equal(calls,0);
 });
+test('late connector response after cancellation is discarded',async()=>{
+  let resolve!: (value: unknown) => void;
+  const c=new AbortController();
+  const reader=connectorReader('fixture',async()=>new Promise<unknown>(r=>{resolve=r;}));
+  const pending=reader(req,c.signal);
+  c.abort();
+  resolve(envelope(row));
+  await assert.rejects(pending,/cancelled/);
+});

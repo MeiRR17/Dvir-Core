@@ -10,6 +10,8 @@ Freeze overlapping feature work. Two workstreams only. Agent identity is determi
 | A — integration lead | feat/m00-inventory-0.0.1 / #4 | sole writer of consolidation candidate, inventory, authorization, receipt policy, shared storage reconciliation, full regression, M00 decision |
 | B — local runtime | feat/m00-review-pipeline-0.0.10 / #13 | runtime-only work: src/runtime, runtime fixtures and separate runtime handoff; review Ollama/MLX discovery and benchmark contracts, authorized host qualification; no shared storage or inventory edits during integration |
 
+Ownership clarification: A may correct only a defect demonstrably introduced by A's own candidate-only adaptation/reconciliation of B-supplied files (for example, a syntax delimiter added while adapting a fixture to an injected resolver). A must verify the exact B input was valid, keep the correction minimal, record provenance, and leave B's runtime behavior/security logic untouched. B remains responsible for runtime feature changes, security implementation and read-only review of the integrated runtime boundary.
+
 Agent B stops independent feature increments until A captures its exact input SHA; then B can prepare runtime-only tests or read-only qualification notes, coordinating any changed input SHA through #14. Agent A owns shared STATUS, CHANGELOG and decisions on the integration candidate; B records its results in PR #13 comments or a runtime-specific handoff file. Neither agent changes the other's branch. Read current HEAD before writing; use compare-and-swap expected SHA or equivalent fast-forward safety, never force-push.
 
 ## Execution queue
