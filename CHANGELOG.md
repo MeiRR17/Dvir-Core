@@ -1,4 +1,9 @@
 # Changelog
+## 0.0.10 — 2026-11-25 (unreleased)
+- Single-attempt receipt write recovery with explicit visibility-versus-durability classification.
+- Six fault/recovery tests plus 39 prior storage and integration checks; strict typecheck.
+- Core live pipeline, actual crash qualification and macOS durability pending.
+
 ## 0.0.9 — 2026-11-25 (unreleased)
 - Read-only stored-receipt review adapter; eight integration tests and 31 storage regression checks.
 - Strict typecheck and approved-host runtime primitive probe.
