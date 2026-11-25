@@ -114,3 +114,13 @@
 - Dvir OS R1 declares Node >=22.18 and its lock resolves TypeScript 5.9.3 plus @types/node 22.20.5. Autopilot separately declares Node >=24; no shared runtime assumption is allowed.
 - The local targeted run was Node 22.16.0 / TypeScript 5.8.3 / @types/node 25.1.0, below/different from the Dvir OS baseline. It is not cross-project compatibility evidence.
 - Added .github/workflows/m00-candidate.yml to run every inventory/storage test and strict typecheck using Node 22.18.0, TypeScript 5.9.3 and @types/node 22.20.5. YAML syntax parsed locally. GitHub Actions result is NOT_OBSERVED as of this handoff; do not mark CI PASS until a run for the current candidate SHA is fetched.
+
+
+## 0.0.18 — runtime integration source evidence (NOT_RUN)
+- Candidate incorporated 14 runtime source/test files from Agent B's exact PR #13 input HEAD 1ed646b3cf9d80a9c2dd2e92689829ebd6d628c1. PR #13 and its branch were not modified.
+- MLX adapter now resolves a caller-supplied opaque environment handle through an owner-configured resolver; static lstat/realpath checks reject symlinked roots and ancestor components. The code explicitly documents the remaining TOCTOU race and does not claim race-free openat semantics.
+- Ollama adapter now resolves its loopback port through an owner-configured resolver; its public probe accepts a deadline only, not a caller-selected port. Resolver errors are sanitized. HTTP behavior remains GET-only to /api/tags and /api/ps, bounded to 1 MiB and 10 seconds max per request, no redirect/generation/cloud fallback.
+- Benchmark receipt now binds executionDigest derived from model digest, quantization, context tokens, KV-cache digest, runtime version and host digest. A write-once helper compares the complete canonical receipt after an error and never retries. Legacy benchmark receipts without executionDigest fail closed.
+- Added/updated synthetic tests for MLX root/ancestor symlinks, trusted Ollama resolver, cross-model/config receipt rejection, legacy receipt rejection and ambiguous benchmark publication recovery.
+- These integrated runtime tests and the full strict typecheck have NOT_RUN in this cycle. The previous 39-entry fixture run was on a different source snapshot and did not include runtime modules. Pinned GitHub Actions result is NOT_OBSERVED; no CI pass is claimed.
+- No Dvir-Core terminal execution, live Ollama/MLX probe, model load, inference or benchmark occurred. Terminal allowlist remains Music/DvirStudio. MLX TOCTOU, approved Core mapping, private receipt retention/key approval and real runtime qualification remain open.
