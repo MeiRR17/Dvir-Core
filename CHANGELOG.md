@@ -6,7 +6,7 @@
 - Bound benchmark receipts to a private execution fingerprint (model digest, quantization, context size, KV-cache digest, runtime version and host digest); added exact write-once readback recovery for ambiguous publication.
 - Legacy benchmark receipts without execution identity now fail closed; no automatic migration, retry, overwrite or deletion.
 - Preserved durable publication state when cleanup fails after fsync; added separate durable-cleanup-warning outcome and exact-readback tests.
-- Added a minimal private ESM package manifest with Node >=22.18.0 and a single `npm test` command; CI invokes that command and retains pinned strict typecheck. Added a pull_request trigger for PR #15's exact base branch. Integrated runtime tests and strict typecheck are NOT_RUN; no CI result observed.
+- Added a minimal private ESM package manifest with Node >=22.18.0 and a single `npm test` command; CI invokes that command and retains pinned strict typecheck. Added a future pull_request trigger for PR #15's base; it remains inactive until the workflow file is present on that base branch. Integrated runtime tests and strict typecheck are NOT_RUN; no CI result observed.
 - No Core-host probe, model load, inference or benchmark. M00 remains incomplete; no merge or release.
 
 ## 0.0.17 — 2026-11-25 (unreleased; M00 consolidation candidate)
