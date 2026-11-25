@@ -1,4 +1,9 @@
 # Changelog
+## 0.0.13 — 2026-11-25 (unreleased)
+- Scoped audit receipt preparation, exact source/evidence binding and proposed private retention policy.
+- 17 targeted tests and strict typecheck; approved-host SHA-256 smoke.
+- Real retention authorization, binding verification and full audit remain pending.
+
 ## 0.0.12 — 2026-11-25 (unreleased)
 - Live GitHub connector schema observation and fixture-tested envelope adapter with strict personal-owner validation and minimal metadata projection.
 - Ten new tests; 13-file regression (43 Node test entries); strict typecheck of 24 files.
