@@ -1,4 +1,9 @@
 # Changelog
+## 0.0.6 — 2026-11-25 (unreleased)
+- Review pipeline joins validated pages, archive observations, decisions and a private receipt-reader interface.
+- Exact receipt binding and freshness checks; unresolved evidence remains unknown.
+- Nineteen targeted fixture checks, strict typecheck and actual approved-host runtime primitive smoke; no Core deployment.
+
 ## 0.0.5 — 2026-11-25 (unreleased)
 - Per-repository decision and archive coverage reducer with strict scope, unique IDs and opaque evidence handles.
 - Fifteen targeted fixture checks and strict erasable-syntax typecheck; real decision audit and receipt resolution still pending.
