@@ -1,4 +1,4 @@
-# Execution status — 0.0.7 (2026-11-25)
+# Execution status — 0.0.8 (2026-11-25)
 Base: reviewed master-plan commit b0e52cf76f688de52eb1c9a9d21786c12bcb7c0e; stacked on draft plan PR #2, not main. Foundation PR #1 also pending.
 
 | Work package | State | Acceptance |
@@ -13,7 +13,8 @@ Base: reviewed master-plan commit b0e52cf76f688de52eb1c9a9d21786c12bcb7c0e; stac
 | M00.5a per-repository decision coverage | IMPLEMENTED / FIXTURE_PASS | 15 synthetic checks; archive counts, stable ID, scope denial, evidence handles, unknown coverage |
 | M00.5b review and private receipt reader contract | IMPLEMENTED / FIXTURE_PASS | 19 checks; page scope, receipt binding, freshness, unresolved decisions |
 | M00.5c authenticated private receipt file store | IMPLEMENTED / FIXTURE_PASS | 18 checks; reopen, tamper, expiry, owner, filesystem denial |
+| M00.5d receipt hardening | IMPLEMENTED / FIXTURE_PASS | 13 new checks, 18 previous checks rerun; runtime schema, hard read bound, duplicate retry denial |
 | M00.6 actual model/runtime inventory | PLANNED (partial probe) | approved runtime metadata and benchmark; no inference benchmark yet |
 | M01–M12 | PLANNED | dependency gates in master plan |
 
-Next exact task: integrate file receipt store with reviewInventory in an end-to-end synthetic fixture, harden runtime input validation and bounded reads, test crash/retry ambiguity and macOS filesystem durability when Core mapping is approved. Connect live inventory only with approved private retention. No production key/directory provisioned. M00 remains incomplete; Core terminal scope OWNER_BLOCKED. M01 acceptance gated on M00. No merge or release.
+Next exact task: integrate file receipt store with reviewInventory in an end-to-end synthetic fixture; then verify crash/post-publication ambiguity and macOS durability with approved Core mapping. Connect live inventory only with approved private retention. No production key/directory provisioned. M00 remains incomplete; Core terminal scope OWNER_BLOCKED. M01 acceptance gated on M00. No merge or release.
