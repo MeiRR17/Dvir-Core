@@ -1,4 +1,8 @@
 # Changelog
+## 0.0.21 — 2026-11-25 (unreleased)
+- Add typed authenticated-store publication outcomes (`not_published`, `published_unconfirmed`, `durable`) so callers can distinguish an unconfirmed directory fsync from a failed pre-publication write.
+- Add real child-process SIGKILL boundary tests before file fsync and after hard-link publication, plus injected file/directory fsync failures. 35 Node test entries, 20 Inventory fixture assertions and strict TypeScript passed in isolated Linux. Process-kill tests are not power-loss qualification.
+
 ## 0.0.20 — 2026-11-25 (unreleased)
 - Extract shared authenticated JSON file primitives for Inventory and Benchmark while preserving separate HMAC domains and existing receipt formats.
 - 32 Node test entries and 20 Inventory fixture assertions passed; existing v0.0.18 benchmark envelope remains readable; strict TypeScript passed. No live Core-host run or actual process-crash fault injection.

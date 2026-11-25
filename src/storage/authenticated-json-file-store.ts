@@ -1,11 +1,17 @@
 import { createHmac, randomBytes, timingSafeEqual } from 'node:crypto';
 import { closeSync, constants, fstatSync, fsyncSync, linkSync, lstatSync, openSync, readSync, unlinkSync, writeFileSync } from 'node:fs';
 import { isAbsolute, join } from 'node:path';
-
 const filenamePattern = /^[a-zA-Z0-9_-]{1,80}\.json$/;
 
-// Shared private-file primitives only. Domain separation and payload schemas
-// remain owned by each caller; the helper never interprets receipt contents.
+export type AuthenticatedPublicationState = 'not_published' | 'published_unconfirmed' | 'durable';
+export class AuthenticatedStoreWriteError extends Error {
+  readonly publication: AuthenticatedPublicationState;
+  constructor(publication: AuthenticatedPublicationState) {
+    super('authenticated store write failed (' + publication + ')');
+    this.publication = publication;
+    this.name = 'AuthenticatedStoreWriteError';
+  }
+}
 export function openAuthenticatedJsonFileStore(directory: string, secret: Uint8Array, domain: string, maxBytes: number) {
   if (typeof directory !== 'string' || !isAbsolute(directory) || !(secret instanceof Uint8Array) || secret.byteLength < 32 || typeof domain !== 'string' || domain.length < 1 || domain.length > 128 || !Number.isSafeInteger(maxBytes) || maxBytes < 128 || maxBytes > 65536) throw new Error('invalid authenticated file store configuration');
   const key = Buffer.from(secret);
@@ -29,12 +35,22 @@ export function openAuthenticatedJsonFileStore(directory: string, secret: Uint8A
       if (bytes.length > maxBytes) throw new Error('authenticated payload too large');
       const temp = join(directory, '.tmp-' + randomBytes(16).toString('hex'));
       const fd = openSync(temp, 'wx', 0o600);
+      let publication: AuthenticatedPublicationState = 'not_published';
+      let failed = false;
       try {
         try { writeFileSync(fd, bytes); fsyncSync(fd); } finally { closeSync(fd); }
-        linkSync(temp, destination); // atomic, immutable publication
+        linkSync(temp, destination);
+        publication = 'published_unconfirmed';
         const dir = openSync(directory, constants.O_RDONLY);
-        try { fsyncSync(dir); } finally { closeSync(dir); }
-      } finally { unlinkSync(temp); }
+        try { fsyncSync(dir); publication = 'durable'; } finally { closeSync(dir); }
+      } catch {
+        failed = true;
+      } finally {
+        try { unlinkSync(temp); } catch { failed = true; }
+      }
+      // On any write error, callers must read and validate the handle before retrying.
+      // publication describes this attempt; "durable" means directory fsync succeeded.
+      if (failed) throw new AuthenticatedStoreWriteError(publication);
     },
     read(name: string): string | undefined {
       try {

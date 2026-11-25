@@ -49,3 +49,6 @@ Compose the existing verifier and store without introducing a second signing int
 
 
 - D016 (0.0.20): extract filesystem envelope and atomic publication into a shared private helper, while keeping receipt schemas, policy checks and HMAC domains separate. Preserve the existing `version: 1` envelope and domain strings so v0.0.18 benchmark and Inventory files remain readable without migration. No encryption, key rotation, retention cleanup or independent proof of inference is added. Trusted directory ancestry and caller-managed keys remain mandatory; crash and fsync fault injection are still open.
+
+
+- D017 (0.0.21): authenticated file-store write failures expose `publication` as `not_published`, `published_unconfirmed` or `durable`. The state describes this write attempt; even `not_published` does not imply that no older target exists. After every write error, callers must read and validate the existing handle before retrying. `published_unconfirmed` means hard-link publication happened but directory fsync was not confirmed; `durable` means directory fsync succeeded even if later temporary-file cleanup failed. SIGKILL tests establish process-restart visibility only, not power-loss durability. Do not automatically delete orphan temp files until a concurrency-safe retention policy exists.

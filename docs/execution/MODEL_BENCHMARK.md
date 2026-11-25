@@ -15,3 +15,6 @@ No benchmark recorded. Approved-project read-only runtime discovery completed; d
 
 
 0.0.20: shared authenticated storage primitives and legacy receipt compatibility tests passed; no live inference or model performance measurement.
+
+
+0.0.21: storage write failure states now distinguish pre-publication failure from unconfirmed publication and confirmed directory fsync. These tests are infrastructure reliability tests, not model performance measurements.
