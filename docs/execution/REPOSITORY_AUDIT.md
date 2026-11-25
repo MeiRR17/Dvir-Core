@@ -110,3 +110,28 @@ Additional exact manifest references:
 - dvir-os package-lock.json: e537cad9e00a30ce831f9bb43064022c7c725f48
 - dvir-os TypeScript-only enforcement: c9dcb9129bccfdbcedcaf45a796071d4ee12ffc7
 - autopilot package.json: 83ca17aa082d32972416a16453830a3d0ffde98f
+
+
+## Branch and open-PR inventory snapshot
+
+Branch counts below are from the owner-scoped branch search on 2026-11-25. Open-PR counts are from the repository-scoped search wrapper; its maximum is 100 results and it does not expose a continuation cursor.
+
+| Repository | Branches observed | Open PRs observed | Interpretation |
+|---|---:|---:|---|
+| dvir-os | 300+ (three full pages; more may exist) | 100-result cap | Full branch/PR audit still required; PR #326 is Draft/HOLD. |
+| Corpora | 300+ (three full pages; more may exist) | 100-result cap | Full branch/PR audit still required; PR #451 is not merge-ready. |
+| Israel Evidence Atlas | 300+ (three full pages; more may exist) | 100-result cap | Full branch/PR audit still required. |
+| Master-Courses | 108 | 100-result cap | Full PR audit still required; domain is excluded by its AGENTS boundary. |
+| Neo4j | 69 | 59 | PR #75 is Draft, stacked on #74. |
+| Music | 72 | 30 | PR #57 is Draft research; domain remains separate. |
+| Timeline | 47 | 37 | PR #44 is Draft; domain remains separate. |
+| Eruv | 19 | 17 | Domain-owned; no Core adoption implied. |
+| Blog | 11 | 5 | PR #21 is Draft. |
+| Kolmud Studio | 8 | 5 | Domain-owned; no Core adoption implied. |
+| Apex | 3 | 2 | PR #7 is Draft. |
+| netload | 3 | 2 | Possible bounded diagnostics adapter only. |
+| CivicFlow | 3 | 1 | Defer pending boundary with IEA. |
+| IDEA | 2 | 1 | Domain-owned; optional read adapter later. |
+| Autopilot | 1 | 0 | Separate local supervisor; adapter only. |
+
+The 100-result cap and multi-page branch counts are evidence of substantial parallel work, not evidence that all branches are active or mergeable. Do not bulk-merge, close or delete old PRs. Complete source-tree/manifest review only for the selected integration surface and preserve each domain's ownership.
