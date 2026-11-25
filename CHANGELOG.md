@@ -1,4 +1,9 @@
 # Changelog
+## 0.0.3 — 2026-11-25 (unreleased)
+- Per-page deadline, abort signal, typed rate-limit/transport failures; preserve partial coverage.
+- Fourteen new fixture checks and strict typecheck; corrected Node strip-only syntax compatibility.
+- Reviewed overlapping reducer in PR #3; no merge or deletion.
+
 ## 0.0.2 — 2026-11-25 (unreleased)
 - Injected bounded pagination reader, strict normalization, sanitized failure states and 13 fixture cases.
 - Refreshed related dependency metadata and verified terminal availability again. Core-local mapping still blocked.
