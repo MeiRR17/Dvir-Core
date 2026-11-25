@@ -1,5 +1,5 @@
 ## 0.0.17 — 2026-11-25 (unreleased; M00 consolidation candidate)
-- Created the single integration candidate from PR #4's exact reviewed HEAD; preserved PR #4, PR #13 and all earlier draft PRs.
+- Created the single integration candidate from PR #4's exact reviewed HEAD; opened draft integration PR #15; preserved PR #4, PR #13 and all earlier draft PRs.
 - Reconciled PR #3 and #5–#12: retained A's prepared-audit contracts; adapted denied classification, case-insensitive owner normalization and late connector cancellation; superseded duplicate reducers/wrappers.
 - Integrated PR #13's authenticated JSON storage primitive while preserving the existing receipt v1 envelope/HMAC domain and A's private prepared binding.
 - Added prepared-receipt write recovery that distinguishes published_unconfirmed from durable publication and never retries or overwrites automatically.
