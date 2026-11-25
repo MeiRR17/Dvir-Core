@@ -4,7 +4,7 @@
 - Integrated PR #13's authenticated JSON storage primitive while preserving the existing receipt v1 envelope/HMAC domain and A's private prepared binding.
 - Added prepared-receipt write recovery that distinguishes published_unconfirmed from durable publication and never retries or overwrites automatically.
 - Isolated Linux fixture run: 39 Node test entries passed; strict TypeScript 5.8.3 check passed for 21 source/test files; changed and critical dependency blob hashes matched GitHub.
-- Initial personal-repository screening is now recorded; full per-repository source/manifest/branch audit remains open. Full inventory/runtime/storage regression, runtime PR #13 integration, macOS/APFS durability, Core terminal mapping, private retention approval and model qualification remain open.
+- Initial personal-repository screening is now recorded; full per-repository source/manifest/branch audit remains open. Added a pinned candidate workflow for Node 22.18.0 and TypeScript 5.9.3; its run is pending. Full inventory/runtime/storage regression, runtime PR #13 integration, macOS/APFS durability, Core terminal mapping, private retention approval and model qualification remain open.
 
 # Changelog
 ## 0.0.16 — 2026-11-25 (unreleased)
