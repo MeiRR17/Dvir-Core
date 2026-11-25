@@ -10,11 +10,12 @@ const key = Buffer.alloc(32, 1);
 const receipt: BenchmarkReceipt = { handle: 'benchmark:run', scope: 'core', revision: 'a'.repeat(40), workloadDigest: 'b'.repeat(64), executionDigest: 'd'.repeat(64), provider: 'mlx', source: 'local', measurementDigest: 'c'.repeat(64), exitCode: 0, observedAt: 900, expiresAt: 1100 };
 function fixture(run: (root: string) => void) { const root = mkdtempSync(join(tmpdir(), 'bench-store-')); try { run(root); } finally { rmSync(root, { recursive: true, force: true }); } }
 const open = (root: string) => openBenchmarkReceiptStore(root, 'core', key);
-test('reads existing v0.0.18 HMAC envelope without migration', () => fixture(root => {
-  const payload = JSON.stringify(receipt);
-  const mac = createHmac('sha256', key).update('dvir-core:benchmark-receipt:v1\\0').update(payload).digest('hex');
+test('legacy v0.0.18 HMAC envelope without execution identity fails closed', () => fixture(root => {
+  const { executionDigest: _executionDigest, ...legacy } = receipt;
+  const payload = JSON.stringify(legacy);
+  const mac = createHmac('sha256', key).update('dvir-core:benchmark-receipt:v1\0').update(payload).digest('hex');
   writeFileSync(join(root, 'run.json'), JSON.stringify({ version: 1, payload, mac }), { mode: 0o600 });
-  assert.deepEqual(open(root).read(receipt.handle, 1000), receipt);
+  assert.equal(open(root).read(receipt.handle, 1000), undefined);
 }));
 test('persist, reopen, private mode and no temporary artifacts', () => fixture(root => {
   open(root).put(receipt, 1000); assert.deepEqual(open(root).read(receipt.handle, 1000), receipt);
