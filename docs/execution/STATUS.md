@@ -35,7 +35,7 @@ Base: reviewed master-plan commit b0e52cf76f688de52eb1c9a9d21786c12bcb7c0e; stac
 | M00.5o owner and cancellation hardening | IMPLEMENTED / FIXTURE_PASS | case-insensitive requested-owner login only; typed denied; late connector response discarded |
 | M00.5p targeted candidate validation | FIXTURE_PASS | 39 Node test entries and strict typecheck of 21 files in isolated Linux fixture; not full regression |
 | M00.5q personal repository screening | PARTIAL / SCREENING | 83/83 personal-owner records enumerated; 69 README files available, 14 empty/missing; selected boundaries documented; 310 dvir-os, 452 Corpora and 314 IEA branches fully paginated; PR search and manifest/source audit remain partial |
-| M00.5r pinned candidate CI | IMPLEMENTED / RUN_PENDING | Workflow pins Node 22.18.0, TypeScript 5.9.3 and @types/node 22.20.5; now includes inventory/runtime/storage suites; no run result observed |
+| M00.5r pinned candidate CI | IMPLEMENTED / RUN_PENDING | Root package manifest now declares ESM and Node >=22.18.0, with a single `npm test` command; workflow pins Node 22.18.0, TypeScript 5.9.3 and @types/node 22.20.5 for inventory/runtime/storage tests and strict typecheck; no run result observed |
 | M00.6a PR #13 runtime integration | IMPLEMENTED / REVIEW_PENDING | 14 runtime source/test files integrated from B SHA; A hardened three trust/recovery contracts; tests not run |
 | M00.6b runtime acceptance | PARTIAL / NOT_RUN | MLX static symlink-root/ancestor denial and owner resolver; Ollama trusted port resolver; execution fingerprint; benchmark write-once recovery; TOCTOU and actual host qualification remain open |
 | M00.4 Core terminal mapping | OWNER_BLOCKED | terminal connector still advertises Music and DvirStudio only |
@@ -46,3 +46,5 @@ Current integration pointer: draft PR #15, based on PR #4 head d729710f8eb59d70a
 Receipt publication outcome correction is included in the latest source snapshot: durable-after-cleanup-error is not downgraded to generic observed readback. Two focused tests added; NOT_RUN. No CI pass claimed.
 
 MLX security handoff: descriptor-anchored implementation and Linux + macOS/APFS fixture qualification are still pending with Agent B. The acceptance design is in `docs/execution/MLX_DESCRIPTOR_BOUNDARY.md`; it is not an implementation or test result.
+
+Reproducibility follow-up: root `package.json` declares `type: module` so NodeNext typechecking and the fault-test `import.meta.url` use the same ESM package boundary. `npm test` is the single full fixture command. No test/typecheck result is claimed.
