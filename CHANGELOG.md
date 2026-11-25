@@ -1,4 +1,9 @@
 # Changelog
+## 0.0.9 — 2026-11-25 (unreleased)
+- Read-only stored-receipt review adapter; eight integration tests and 31 storage regression checks.
+- Strict typecheck and approved-host runtime primitive probe.
+- Crash fault injection and live inventory pipeline remain pending.
+
 ## 0.0.8 — 2026-11-25 (unreleased)
 - Hard-capped receipt file reads, runtime type checks and duplicate retry denial.
 - 13 new checks plus 18 receipt-store regression checks, strict typecheck and approved-host runtime primitive check.
