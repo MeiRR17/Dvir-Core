@@ -1,4 +1,9 @@
 # Changelog
+## 0.0.5 — 2026-11-25 (unreleased)
+- Owner-scoped decision summary with adopt/defer/not_applicable/unknown and explicit unknown archive state.
+- Reject duplicates, foreign owners, unrecognized decisions and missing evidence; count-only output.
+- 12 fixture assertions, strict typecheck and verified remote blobs. No live integration.
+
 ## 0.0.4 — 2026-11-25 (unreleased)
 - Typed capability ownership boundaries and source-reviewed dependency matrix.
 - Full fixture regression: five scripts, 75 reported checks; strict erasable-syntax typecheck.
