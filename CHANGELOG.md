@@ -1,4 +1,8 @@
 # Changelog
+## 0.0.18 — 2026-11-25 (unreleased)
+- Add private HMAC-authenticated benchmark receipt file store with bounded reads and immutable atomic publication.
+- Nine isolated filesystem tests and strict TypeScript check passed; no live inference or production key provisioning.
+
 ## 0.0.17 — 2026-11-25 (unreleased)
 - Bind benchmark measurement samples to scoped, revision-specific, time-limited private receipts; suppress unmatched local summaries.
 - Eight new isolated tests and strict TypeScript check passed. No live inference or authenticated resolver integration.

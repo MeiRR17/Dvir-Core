@@ -38,3 +38,7 @@
 
 ## 0.0.17 — benchmark evidence contract
 Use exact ordered normalized measurement digests instead of aggregate hashes, a trusted private receipt resolver, explicit approved workload identity and a provisional maximum receipt lifetime of 24 hours. Unmatched local summaries remain unavailable; fixture results retain their label. This is a binding contract, not an authentication or execution claim. Authenticated persistence, trusted clocks and actual local evaluation remain gated.
+
+
+## 0.0.18 — benchmark receipt storage
+Use a dedicated directory and separate HMAC domain from inventory receipts; preserve existing inventory storage unchanged. Reuse its bounded read/atomic publication pattern; consolidate the shared filesystem primitives in a later tested increment rather than altering existing receipt format now. Caller provides trusted directory, key and clock. No encryption, automatic deletion, key rotation or inference attestation claimed.

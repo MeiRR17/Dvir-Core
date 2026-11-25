@@ -8,3 +8,5 @@ No benchmark recorded. Approved-project read-only runtime discovery completed; d
 0.0.16: MLX distribution-directory discovery implemented and tested on temporary fixtures; no live package inventory, imports, model loading or benchmark performed.
 
 0.0.17: receipt review contract implemented with exact ordered measurement digest, scope/revision/workload matching and freshness. Eight fixture tests passed; no actual benchmark or production authenticated resolver. A matched receipt is not independent proof of inference.
+
+0.0.18: private benchmark receipt file store implemented; nine isolated filesystem tests passed. No live measurements or production key provisioning. Review integration pending.
