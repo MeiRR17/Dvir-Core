@@ -1,4 +1,4 @@
-# Execution status — 0.0.4 (2026-11-25)
+# Execution status — 0.0.5 (2026-11-25)
 Base: reviewed master-plan commit b0e52cf76f688de52eb1c9a9d21786c12bcb7c0e; stacked on draft plan PR #2, not main. Foundation PR #1 also pending.
 
 | Work package | State | Acceptance |
@@ -10,7 +10,8 @@ Base: reviewed master-plan commit b0e52cf76f688de52eb1c9a9d21786c12bcb7c0e; stac
 | M00.3 existing terminal reachability | LOCAL_VERIFIED (approved project only) | bounded read-only diagnostics returned exit 0 |
 | M00.4 Core terminal mapping | OWNER_BLOCKED | connector project enum does not include Core; no bypass attempted |
 | M00.5 linked plan/ADR and dependency audit | IMPLEMENTED / FIXTURE_PASS (ownership boundaries); full audit pending | complete relevant refs, ADRs, branch/manifest checks and overlap review |
+| M00.5a per-repository decision coverage | IMPLEMENTED / FIXTURE_PASS | 15 synthetic checks; archive counts, stable ID, scope denial, evidence handles, unknown coverage |
 | M00.6 actual model/runtime inventory | PLANNED (partial probe) | approved runtime metadata and benchmark; no inference benchmark yet |
 | M01–M12 | PLANNED | dependency gates in master plan |
 
-Next exact task: implement and test a safe per-repository decision inventory (adopt/defer/not applicable/unknown), reconcile archive observations from PR #3 without merging it, and establish approved private evidence retention. Runtime/model inventory and Core terminal mapping remain incomplete. M01 acceptance remains gated on M00. No release or live integration claimed.
+Next exact task: connect validated repository observations to the decision reducer without publishing private IDs, implement a private receipt retention interface and validate evidence-handle resolution (currently only format checked). Complete the real per-repository decision audit under approved retention/scope. M00 remains incomplete; Core terminal mapping OWNER_BLOCKED and no live inference or benchmark. M01 acceptance gated on M00. No merge or release.
