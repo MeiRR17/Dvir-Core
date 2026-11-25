@@ -1,4 +1,9 @@
 # Changelog
+## 0.0.8 — 2026-11-25 (unreleased)
+- Compose existing local receipt store with review pipeline; read-only, explicit time/revision, aggregate output.
+- Ten integration checks and 37 related regression checks pass; strict typecheck and matching remote blobs.
+- No live provider integration or deployment.
+
 ## 0.0.6 — 2026-11-25 (unreleased)
 - Review pipeline joins validated pages, archive observations, decisions and a private receipt-reader interface.
 - Exact receipt binding and freshness checks; unresolved evidence remains unknown.
