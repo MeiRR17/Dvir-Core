@@ -7,3 +7,6 @@
 
 - D006 (0.0.2): fixed-width offset reader accepts a short page only if followed by an empty page. A nonempty successor is invalid; incomplete coverage is preserved on transport/validation errors. Maximum 100 requests; reader supplies deadline/cancellation; no retry or rate-limit distinction yet. This is a fixture-tested contract, not a guarantee of stable live pagination.
 - D007: continue PR #4, preserve parallel PR #3; reconcile before integration, no duplicate merge. Dependency metadata refreshed; no private refs exported.
+
+- D008 (0.0.3): enforce per-page deadline (1–60000 ms; default 10000) with AbortSignal; stop on failure with prior valid coverage; no retries. Reader may ignore cancellation, so never claim transport actually stopped. Only typed transport errors can classify rate limits; no raw error detail in results.
+- D009: reviewed parallel PR #3 reducer; prefer stable ID and strict foreign-owner rejection in #4; archive-count capability may be integrated separately after review. Both PRs preserved.
