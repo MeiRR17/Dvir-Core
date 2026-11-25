@@ -1,4 +1,9 @@
 # Changelog
+## 0.0.14 — 2026-11-25 (unreleased)
+- Bounded audit intake and exact evidence digest, source SHA, receipt and current approval binding verification.
+- 17 targeted tests including authenticated file receipt integration; strict typecheck of local fixture set and approved-host digest smoke.
+- Private durable binding storage and authenticated live lookup remain pending.
+
 ## 0.0.13 — 2026-11-25 (unreleased)
 - Scoped audit receipt preparation, exact source/evidence binding and proposed private retention policy.
 - 17 targeted tests and strict typecheck; approved-host SHA-256 smoke.
