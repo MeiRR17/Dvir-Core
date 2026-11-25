@@ -57,4 +57,5 @@ test('invalid handles, roots and limits rejected or fail closed', async () => {
   for (const handle of ['', '../private', '/tmp']) await assert.rejects(p(handle), /invalid MLX probe configuration/);
   for (const limit of [0, 10001, 1.5]) await assert.rejects(p('python-main', limit), /invalid MLX probe configuration/);
   assert.equal((await createMlxMetadataProbe(() => 'relative')('python-main')).state, 'unavailable');
+  assert.equal((await createMlxMetadataProbe(() => '/')('python-main')).state, 'unavailable');
 }));
