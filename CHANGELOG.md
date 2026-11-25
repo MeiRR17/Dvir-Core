@@ -1,4 +1,9 @@
 # Changelog
+## 0.0.16 — 2026-11-25 (unreleased)
+- Prepared audit entry point composes connector, authenticated file receipts and explicit trusted current-context authority contract.
+- Nine new tests; 91 passing Node test entries across 17 local fixture files, including connector; strict typecheck of 31 files.
+- Actual live audit/authority, private retention and Core terminal mapping remain pending.
+
 ## 0.0.15 — 2026-11-25 (unreleased)
 - Atomic prepared receipt and private binding persistence in existing HMAC store, with canonical handle verification and legacy compatibility.
 - Five new tests; 72 passing Node test entries in 15 local fixture files (connector suite excluded), strict typecheck and approved-host integrity primitive probe.
