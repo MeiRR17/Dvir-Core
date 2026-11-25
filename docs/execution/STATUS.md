@@ -1,4 +1,4 @@
-# Execution status — 0.0.17 (2026-11-25)
+# Execution status — 0.0.18 (2026-11-25)
 Base: reviewed master-plan commit b0e52cf76f688de52eb1c9a9d21786c12bcb7c0e; stacked on draft plan PR #2, not main. Foundation PR #1 also pending.
 
 | Work package | State | Acceptance |
@@ -22,10 +22,11 @@ Base: reviewed master-plan commit b0e52cf76f688de52eb1c9a9d21786c12bcb7c0e; stac
 | M00.5j private evidence binding and bounded intake | IMPLEMENTED / FIXTURE_PASS | 17 targeted tests, exact source/digest/approval binding, batch limits, stored receipt integration |
 | M00.5k atomic prepared receipt persistence | IMPLEMENTED / FIXTURE_PASS | five new tests, HMAC-protected binding, reopen and revocation fixture |
 | M00.5l prepared audit entry point | IMPLEMENTED / FIXTURE_PASS | 9 new tests, 91 Node test entries across 17 local test files; explicit trusted authority contract |
-| M00.6 actual model/runtime inventory | PLANNED (partial probe) | approved runtime metadata and benchmark; no inference benchmark yet |
+| M00.6 runtime module integration | IMPLEMENTED / NOT_RUN | 14 runtime source/test files integrated from B's exact input; resolver, execution fingerprint and write-once recovery hardened; integrated tests/typecheck not run |
+| M00.6 host qualification | OWNER_BLOCKED | Core terminal mapping absent; no live Ollama/MLX probe, model load or inference |
 | M01–M12 | PLANNED | dependency gates in master plan |
 
-## 0.0.17 — consolidation candidate
+## 0.0.18 — runtime integration candidate
 
 | Work package | State | Acceptance |
 |---|---|---|
@@ -34,9 +35,10 @@ Base: reviewed master-plan commit b0e52cf76f688de52eb1c9a9d21786c12bcb7c0e; stac
 | M00.5o owner and cancellation hardening | IMPLEMENTED / FIXTURE_PASS | case-insensitive requested-owner login only; typed denied; late connector response discarded |
 | M00.5p targeted candidate validation | FIXTURE_PASS | 39 Node test entries and strict typecheck of 21 files in isolated Linux fixture; not full regression |
 | M00.5q personal repository screening | PARTIAL / SCREENING | 83/83 personal-owner records enumerated; 69 README files available, 14 empty/missing; selected domain boundaries documented; full branch/manifest audit pending |
-| M00.5r pinned candidate CI | IMPLEMENTED / RUN_PENDING | Workflow pins Node 22.18.0, TypeScript 5.9.3 and @types/node 22.20.5; no GitHub Actions result observed yet |
-| M00.6 PR #13 runtime integration | PLANNED / AGENT B REVIEW | Ollama/MLX and benchmark modules not yet integrated or qualified |
+| M00.5r pinned candidate CI | IMPLEMENTED / RUN_PENDING | Workflow pins Node 22.18.0, TypeScript 5.9.3 and @types/node 22.20.5; now includes inventory/runtime/storage suites; no run result observed |
+| M00.6a PR #13 runtime integration | IMPLEMENTED / REVIEW_PENDING | 14 runtime source/test files integrated from B SHA; A hardened three trust/recovery contracts; tests not run |
+| M00.6b runtime acceptance | PARTIAL / NOT_RUN | MLX static symlink-root/ancestor denial and owner resolver; Ollama trusted port resolver; execution fingerprint; benchmark write-once recovery; TOCTOU and actual host qualification remain open |
 | M00.4 Core terminal mapping | OWNER_BLOCKED | terminal connector still advertises Music and DvirStudio only |
 
-Next exact task: Agent B reviews the candidate's runtime integration contracts and returns a runtime-only handoff without modifying inventory/shared storage. Agent A then reconciles runtime modules and runs the complete inventory/runtime/storage suite on one candidate tree. M00 remains incomplete; M01 gated. No merge, deployment or release. 
-Current integration pointer: draft PR #15, based on PR #4 head d729710f8eb59d70aea978cfab3d8c594ec9acfc. Tested source snapshot: af5eafddf7accf069dd4993ec9502b265fec8160; subsequent branch changes are documentation-only. PR metadata is authoritative for the current final head and comparison. Draft only; no merge.
+Next exact task: obtain Agent B's read-only review of the integrated runtime files; run the pinned full inventory/runtime/storage tests and strict typecheck on the same candidate SHA; fix concrete failures; resolve the MLX descriptor-relative path race before any host probe. Core terminal mapping, private retention/key approval, complete repository audit and actual runtime qualification remain blockers. M00 remains incomplete; M01 gated. No merge, deployment or release. 
+Current integration pointer: draft PR #15, based on PR #4 head d729710f8eb59d70aea978cfab3d8c594ec9acfc. Prior tested source snapshot af5eafddf7accf069dd4993ec9502b265fec8160 covers the earlier inventory/storage fixture only. Runtime integration source and tests added after that snapshot have NOT_RUN. PR metadata is authoritative for the current candidate HEAD. Draft only; no merge.
