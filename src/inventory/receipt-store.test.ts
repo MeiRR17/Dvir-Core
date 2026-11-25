@@ -1,0 +1,33 @@
+import { mkdtempSync, rmSync, chmodSync, writeFileSync, symlinkSync, readFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import { strict as assert } from 'node:assert';
+import { openReceiptStore, type Receipt } from './receipt-store.ts';
+const root = mkdtempSync(join(tmpdir(),'receipt-fixture-'));
+const key = Buffer.alloc(32, 7);
+const receipt: Receipt = { handle:'receipt:one', owner:'fixture', repositoryId:'1', decision:'adopt', revision:'a'.repeat(40), observedAt:10, expiresAt:30 };
+try {
+  const store = openReceiptStore(root,'fixture',key);
+  store.put(receipt,20);
+  assert.deepEqual(openReceiptStore(root,'fixture',key).read(receipt.handle,20),receipt);
+  assert.equal(store.read(receipt.handle,30),undefined);
+  assert.equal(store.read(receipt.handle,9),undefined);
+  assert.equal(openReceiptStore(root,'other',key).read(receipt.handle,20),undefined);
+  assert.equal(openReceiptStore(root,'fixture',Buffer.alloc(32,8)).read(receipt.handle,20),undefined);
+  assert.throws(()=>store.put(receipt,20));
+  assert.throws(()=>store.put({...receipt,handle:'receipt:two',owner:'other'},20));
+  assert.throws(()=>store.put({...receipt,handle:'receipt:two'},30));
+  assert.equal(store.read('receipt:../one',20),undefined);
+  symlinkSync(join(root,'one.json'),join(root,'link.json'));
+  assert.equal(store.read('receipt:link',20),undefined);
+  const p=join(root,'one.json');
+  const envelope=JSON.parse(readFileSync(p,'utf8')); envelope.body=envelope.body.replace('adopt','defer');
+  writeFileSync(p,JSON.stringify(envelope));
+  assert.equal(store.read(receipt.handle,20),undefined);
+  writeFileSync(join(root,'big.json'),'a'.repeat(4097),{mode:0o600});
+  assert.equal(store.read('receipt:big',20),undefined);
+  chmodSync(root,0o755);
+  assert.throws(()=>openReceiptStore(root,'fixture',key));
+  assert.equal(store.read(receipt.handle,20),undefined);
+  console.log('14 receipt store assertions passed');
+} finally { rmSync(root,{recursive:true,force:true}); }
