@@ -15,3 +15,5 @@ No install, permission expansion, public endpoint or duplicate terminal server.
 0.0.4: [source review and ownership matrix](DEPENDENCY_AUDIT.md) recorded. No external MCP installation or duplicate terminal bridge. No browser automation dependency introduced.
 
 0.0.12: verified the existing GitHub list_repositories response shape using personal-owner bounded reads. Added fixture-tested injected connector reader. No live runtime wiring, additional connector or scope expansion.
+
+0.0.17: reused PR #13's shared authenticated JSON storage primitive inside the single M00 candidate. No new terminal MCP, external MCP installation, server bridge, permission expansion or Core host access. Existing Core terminal scope remains OWNER_BLOCKED.
