@@ -7,6 +7,8 @@
     "node": ">=22.18.0"
   },
   "scripts": {
-    "test": "node --experimental-strip-types --test src/inventory/*.test.ts src/runtime/*.test.ts src/storage/*.test.ts"
+    "test": "node --experimental-strip-types --test src/inventory/*.test.ts src/runtime/*.test.ts src/storage/*.test.ts",
+    "test:inventory-storage": "node --experimental-strip-types --test src/inventory/*.test.ts src/storage/*.test.ts",
+    "test:runtime": "node --experimental-strip-types --test src/runtime/*.test.ts"
   }
 }
