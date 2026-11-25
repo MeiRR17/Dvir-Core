@@ -10,11 +10,12 @@ async function run(): Promise<void> {
   equal(calls, 2);
   equal(observed?.aborted, true);
   equal((await collectInventory(async () => { throw new PageReadError('rate_limited'); }, 'fixture')).stop, 'rate_limited');
+  equal((await collectInventory(async () => { throw new PageReadError('denied'); }, 'fixture')).stop, 'denied');
   equal((await collectInventory(async () => { throw new Error('secret'); }, 'fixture')).stop, 'transport_error');
   equal((await collectInventory(async () => ({ repositories: [] }), 'fixture')).stop, 'complete');
   let rejected = false;
   try { await collectInventory(async () => page, 'fixture', 1, 1, 0); } catch { rejected = true; }
   equal(rejected, true);
-  console.log('collector deadline fixture: 7 checks passed');
+  console.log('collector deadline fixture: 8 checks passed');
 }
 void run();
