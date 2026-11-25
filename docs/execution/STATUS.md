@@ -1,14 +1,14 @@
-# Execution status — 0.0.1 (2026-11-25)
-Base: reviewed master-plan commit b0e52cf76f688de52eb1c9a9d21786c12bcb7c0e; stacked on draft plan PR #2, not main. Foundation PR #1 also pending.
-
+# Execution status — 0.0.2 (2026-11-25)
+Base: v0.0.1 branch feat/m00-inventory-0.0.1 at 618b47871e9f54265128e8c4e1bf2d9c56668ba0 (PR #4). Separate stacked increment; PR #3 remains untouched for later reconciliation.
 | Work package | State | Acceptance |
 |---|---|---|
-| M00.1 pagination/owner coverage validator | IMPLEMENTED / FIXTURE_PASS | strict typecheck, nine synthetic assertions, remote blobs verified |
-| M00.2 personal repository enumeration | LOCAL_VERIFIED (connector only) | owner-filtered page requests and empty terminal page observed; no org access; raw results not published |
-| M00.3 existing terminal reachability | LOCAL_VERIFIED (approved project only) | bounded read-only diagnostics returned exit 0 |
-| M00.4 Core terminal mapping | OWNER_BLOCKED | connector project enum does not include Core; no bypass attempted |
-| M00.5 linked plan/ADR and dependency audit | PLANNED (partial review) | complete relevant refs, ADRs, branch/manifest checks and overlap review |
-| M00.6 actual model/runtime inventory | PLANNED (partial probe) | approved runtime metadata and benchmark; no inference benchmark yet |
+| M00.1 coverage validator | FIXTURE_PASS | inherited from PR #4 |
+| M00.2 bounded pagination adapter | IMPLEMENTED / FIXTURE_PASS | 14 synthetic assertions; strict typecheck; source and test blob verified |
+| M00.2 live enumeration | LOCAL_VERIFIED (connector only, earlier) | actual runtime adapter not yet wired |
+| M00.3 terminal reachability | LOCAL_VERIFIED (approved project only, earlier) | no Core checkout |
+| M00.4 Core terminal mapping | OWNER_BLOCKED | existing connector scope excludes Core |
+| M00.5 dependency audit | PLANNED (partial) | refresh linked plans and ADRs, per-dependency decisions |
+| M00.6 model inventory | PLANNED (partial) | actual benchmarks pending |
 | M01–M12 | PLANNED | dependency gates in master plan |
 
-Next exact task: finish M00.5 source-linked per-dependency audit and add safe inventory page normalization/coverage tests; reconcile short-page behavior and provider pagination contract. Core-local tests require owner-approved mapping through the existing terminal MCP. No release or integration claimed. Public repo stores only synthetic data and non-sensitive evidence.
+Next: M00.3a transport boundary: map actual connector response into minimal records, enforce per-request deadline/abort and typed rate-limit errors using fixtures. Then M00.5 audit and reconciliation of duplicate inventory branches. Do not claim stable snapshot consistency, real network integration, or release. Public repo contains only synthetic fixtures and non-sensitive evidence.
