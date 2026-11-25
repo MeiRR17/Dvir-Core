@@ -19,7 +19,7 @@ test('normalized distributions detected without reading contents', () => fixture
   await writeFile(join(root, 'danger.pth'), 'raise RuntimeError()');
   const result = await probe(root)('python-main');
   assert.deepEqual(result.packages, { mlx: 'present', mlx_lm: 'present', mlx_vlm: 'present' });
-  assert.doesNotMatch(JSON.stringify(result), /0\\.30|local|fixture|danger/);
+  assert.doesNotMatch(JSON.stringify(result), /0\.30|local|fixture|danger/);
 }));
 test('multiple versions remain ambiguous', () => fixture(async root => {
   await mkdir(join(root, 'mlx-1.dist-info')); await mkdir(join(root, 'mlx-2.dist-info'));
