@@ -93,7 +93,7 @@
 - Approved-project terminal read-only runtime discovery and synthetic freshness/digest smoke returned exit 0. Optional runtime executables checked on PATH only, not installation proof. Core mapping absent from advertised project enum; no Core checkout, host writes or inference. Raw host details not published.
 
 ## 0.0.17 — M00 consolidation candidate (isolated fixture only)
-- Candidate source snapshot: 5744b57097ea2f07b23960e5d2cbeac256f5166b; base PR #4 input d729710f8eb59d70aea978cfab3d8c594ec9acfc; PR #13 input reviewed at 1ed646b3cf9d80a9c2dd2e92689829ebd6d628c1.
+- Candidate source snapshot: af5eafddf7accf069dd4993ec9502b265fec8160; base PR #4 input d729710f8eb59d70aea978cfab3d8c594ec9acfc; PR #13 input reviewed at 1ed646b3cf9d80a9c2dd2e92689829ebd6d628c1.
 - Environment: isolated Linux container, Node v22.16.0, TypeScript 5.8.3. No Dvir-Core checkout or write was made on the owner's AI server because the existing terminal MCP advertises only Music and DvirStudio.
 - Command: node --experimental-strip-types --test src/storage/*.test.ts src/inventory/receipt-store.test.ts src/inventory/prepared-store.test.ts src/inventory/receipt-recovery.test.ts src/inventory/collect.test.ts src/inventory/collect-deadline.test.ts src/inventory/connector.test.ts — exit 0; 39 Node test entries, 0 failed. Three fixture scripts additionally reported 17 collector cases, 8 deadline checks and 18 receipt-store checks; these are fixture assertions, not additional Node test entries.
 - Strict typecheck: tsc --noEmit --strict --erasableSyntaxOnly --target es2022 --module nodenext --allowImportingTsExtensions --typeRoots /opt/nvm/versions/node/v22.16.0/lib/node_modules/ts-node/node_modules/@types --types node (21 source/test files) — exit 0.
