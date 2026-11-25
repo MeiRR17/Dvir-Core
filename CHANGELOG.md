@@ -1,4 +1,9 @@
 # Changelog
+## 0.0.6 — 2026-11-25 (unreleased)
+- Evidence gate validates enumeration and binds receipt lookup to repository and decision; unresolved evidence downgrades to unknown.
+- 15 synthetic checks and strict typecheck; exact Git blobs verified.
+- No live transport, private storage or merge.
+
 ## 0.0.5 — 2026-11-25 (unreleased)
 - Per-repository decision and archive coverage reducer with strict scope, unique IDs and opaque evidence handles.
 - Fifteen targeted fixture checks and strict erasable-syntax typecheck; real decision audit and receipt resolution still pending.
