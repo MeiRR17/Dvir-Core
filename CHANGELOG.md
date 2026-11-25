@@ -1,4 +1,9 @@
 # Changelog
+## 0.0.12 — 2026-11-25 (unreleased)
+- Reconcile parallel collection paths using one internal minimized-page collector; preserve strict and partial review policies.
+- Reuse receipt recovery and fault-injection tests from PR #4.
+- 38 Node test entries passed; strict typecheck of 18 files. No merge or production deployment.
+
 ## 0.0.11 — 2026-11-25 (unreleased)
 - Integrate authenticated local receipts with bounded inventory pipeline. Store setup failure precedes provider access.
 - Five new filesystem integration tests, 22 Node entries total passed; strict typecheck and 14 remote blobs verified.

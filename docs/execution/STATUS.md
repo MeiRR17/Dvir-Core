@@ -1,4 +1,4 @@
-# Execution status — 0.0.11 (2026-11-25)
+# Execution status — 0.0.12 (2026-11-25)
 Base: reviewed master-plan commit b0e52cf76f688de52eb1c9a9d21786c12bcb7c0e; stacked on draft plan PR #2, not main. Foundation PR #1 also pending.
 
 | Work package | State | Acceptance |
@@ -17,7 +17,8 @@ Base: reviewed master-plan commit b0e52cf76f688de52eb1c9a9d21786c12bcb7c0e; stac
 | M00.5e stored-receipt review integration | IMPLEMENTED / FIXTURE_PASS | 8 integration tests and 31 existing storage checks; aggregate-only output |
 | M00.5f scoped collection and review pipeline | IMPLEMENTED / FIXTURE_PASS | 7 new pipeline tests, 8 reader tests, 19 review assertions; strict typecheck of ten files |
 | M00.5g persistent evidence pipeline | IMPLEMENTED / FIXTURE_PASS | 5 new integration tests; 22 Node entries total, 14 verified blobs |
+| M00.5h shared collection and receipt recovery | IMPLEMENTED / FIXTURE_PASS | 38 Node test entries; 18 tested blobs; strict typecheck; selected PR #4 work reconciled |
 | M00.6 actual model/runtime inventory | PLANNED (partial probe) | approved runtime metadata and benchmark; no inference benchmark yet |
 | M01–M12 | PLANNED | dependency gates in master plan |
 
-Next exact task: reconcile this PR with active PR #4 (which has independent receipt recovery and subsequent work), run the combined inventory regression suite, and verify approved private storage and Core terminal scope. Live connector invocation and actual per-repository audit/model benchmarks remain incomplete. No merge or release.
+Next exact task: run remaining inventory suites against the consolidated tree, check for further concurrent changes and complete approved private retention/terminal mapping. M00 actual per-repository audit, model inventory and benchmarks remain incomplete; no merge or release.
