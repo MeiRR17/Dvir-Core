@@ -12,3 +12,6 @@ Version 0.0.13. This is an implementation candidate, not permission to retain re
 
 ## M00 remaining acceptance
 Actual per-repository decisions with source-linked private evidence; approved private retention and authenticated approval path; existing terminal scope and Core mapping; local runtime/model observations with limits; source/branch audit coverage and unknowns. Live adapter execution and crash/durability verification remain separate gates. A fixture pass does not close any missing live or owner gate.
+
+
+0.0.15 implementation note: the fixture-qualified store can persist a prepared receipt and binding together under the same HMAC envelope. The bound reader still requires authenticated current approval and independently obtained source/evidence bytes; legacy receipts are insufficient for this route. The production storage/retention, revocation, encryption and disposal decisions remain unapproved.
