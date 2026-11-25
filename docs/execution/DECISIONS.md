@@ -12,3 +12,5 @@
 - D009: reviewed parallel PR #3 reducer; prefer stable ID and strict foreign-owner rejection in #4; archive-count capability may be integrated separately after review. Both PRs preserved.
 
 - D010 (0.0.4): encode capability ownership as a pure typed map, deny unknown/mismatched ownership and return copies. This is an architecture consistency check, not authorization. Preserve Dvir OS, Apex/PCI, Corpora, Neo4j, Autopilot and existing terminal ownership; Hermes remains evaluation only. See DEPENDENCY_AUDIT.md.
+
+- D011 (0.0.5): per-repository decision summary requires unique stable IDs, strict owner scope, explicit archive observation and a syntactically valid opaque receipt handle for every non-unknown decision. This incorporates the archive-count concept from parallel PR #3 without merging it. Complete requires confirmed enumeration and zero unknown decisions. The receipt handle is not proof of underlying evidence; a private resolver and retention policy remain necessary. Only aggregate counts returned; no live classifications or approval claims.
