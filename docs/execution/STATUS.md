@@ -48,3 +48,5 @@ Receipt publication outcome correction is included in the latest source snapshot
 MLX security handoff: descriptor-anchored implementation and Linux + macOS/APFS fixture qualification are still pending with Agent B. The acceptance design is in `docs/execution/MLX_DESCRIPTOR_BOUNDARY.md`; it is not an implementation or test result.
 
 Reproducibility follow-up: root `package.json` declares `type: module` so NodeNext typechecking and the fault-test `import.meta.url` use the same ESM package boundary. `npm test` is the single full fixture command. No test/typecheck result is claimed.
+
+CI trigger follow-up: the pinned candidate workflow now listens to both pushes on the integration branch and pull-request events targeting `feat/m00-inventory-0.0.1` (PR #15 base). This makes the candidate verification workflow eligible for PR synchronization events. No run/status is visible yet for the resulting HEAD; test and strict typecheck remain NOT_RUN / NOT_OBSERVED.
