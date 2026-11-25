@@ -43,3 +43,5 @@
 
 - D026 (0.0.17): personal repository integration is adapter-first. Dvir OS owns product UX/goals/approvals; Apex owns read-only launcher metadata; Corpora owns rights/catalog; Neo4j owns graph/research; Autopilot owns development workflow; Blog, Music, Taamify, Timeline, IEA, IDEA, Eruv and CivicFlow retain their domain logic. Core may consume only bounded, approved contracts and must not copy domain databases or workflows.
 - D027 (0.0.17): exclude organization-consolidated sources, biometric/student data, and Master-Courses academic content from Core. Empty/README-missing repositories remain UNKNOWN. No adoption or retirement is inferred from missing files or a README alone.
+
+- D028 (0.0.17): align Core's supported baseline with Dvir OS at Node >=22.18; pin candidate verification to Node 22.18.0, TypeScript 5.9.3 and @types/node 22.20.5. Autopilot requires Node >=24 and remains an isolated adapter target. Do not claim the earlier Node 22.16 / TypeScript 5.8.3 fixture run proves compatibility; wait for the pinned GitHub Actions run.
