@@ -1,4 +1,9 @@
 # Changelog
+## 0.0.4 — 2026-11-25 (unreleased)
+- Reconcile parallel collector behavior: case-insensitive owner matching, validated owner syntax, typed permission denial, retained partial coverage.
+- Ten focused fixture cases passed; strict typecheck and matching Git blobs.
+- No live transport or merge.
+
 ## 0.0.3 — 2026-11-25 (unreleased)
 - Per-page deadline, abort signal, typed rate-limit/transport failures; preserve partial coverage.
 - Fourteen new fixture checks and strict typecheck; corrected Node strip-only syntax compatibility.
