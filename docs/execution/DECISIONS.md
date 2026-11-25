@@ -12,3 +12,5 @@
 - D009: reviewed parallel PR #3 reducer; prefer stable ID and strict foreign-owner rejection in #4; archive-count capability may be integrated separately after review. Both PRs preserved.
 
 - D010 (0.0.4): encode capability ownership as a pure typed map, deny unknown/mismatched ownership and return copies. This is an architecture consistency check, not authorization. Preserve Dvir OS, Apex/PCI, Corpora, Neo4j, Autopilot and existing terminal ownership; Hermes remains evaluation only. See DEPENDENCY_AUDIT.md.
+
+- 0.0.5: decision reducer separates repository review status from archive status and requires evidence reference for non-unknown dispositions. It returns counts only; evidence references are validated for presence/length, not resolved or authenticated. Review completeness is relative to supplied input and does not prove account coverage. Integrate with approved local storage and explicit enumeration gate before operational claims.
