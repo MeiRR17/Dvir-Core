@@ -1,4 +1,4 @@
-# Execution status — 0.0.13 (2026-11-25)
+# Execution status — 0.0.14 (2026-11-25)
 Base: reviewed master-plan commit b0e52cf76f688de52eb1c9a9d21786c12bcb7c0e; stacked on draft plan PR #2, not main. Foundation PR #1 also pending.
 
 | Work package | State | Acceptance |
@@ -19,7 +19,8 @@ Base: reviewed master-plan commit b0e52cf76f688de52eb1c9a9d21786c12bcb7c0e; stac
 | M00.5g bounded collected review pipeline | IMPLEMENTED / FIXTURE_PASS | 10 new tests; all 12 fixture files and strict typecheck pass |
 | M00.5h GitHub connector shape adapter | IMPLEMENTED / FIXTURE_PASS + LIVE_SCHEMA_OBSERVED | owner-filtered live envelope, ID, archive and visibility observations; 10 new tests, 13-file regression |
 | M00.5i scoped receipt preparation and retention policy | IMPLEMENTED / FIXTURE_PASS | 17 targeted tests; proposed policy, not approved retention |
+| M00.5j private evidence binding and bounded intake | IMPLEMENTED / FIXTURE_PASS | 17 targeted tests, exact source/digest/approval binding, batch limits, stored receipt integration |
 | M00.6 actual model/runtime inventory | PLANNED (partial probe) | approved runtime metadata and benchmark; no inference benchmark yet |
 | M01–M12 | PLANNED | dependency gates in master plan |
 
-Next exact task: implement verification of private evidence binding on receipt resolution and a bounded audit intake contract. Authenticate owner approval and provision private storage only through an explicitly approved path. Complete real per-repository decisions and host/model benchmark under approved scope. M00 remains incomplete: Core terminal mapping OWNER_BLOCKED; no live adapter execution, actual crash or macOS durability verification. M01 acceptance gated. No merge or release.
+Next exact task: establish durable private binding storage and authenticated approval/source lookup contract, then perform approved real per-repository audit. The bound reader requires trusted current approval and evidence context; legacy review entry points still exist. Core terminal mapping OWNER_BLOCKED, retention policy not approved, no live adapter execution or local inference benchmark. M00 incomplete; M01 acceptance gated. No merge or release.
