@@ -82,3 +82,19 @@ test('matching duplicate after pre-publication error is visibility only', () => 
   };
   assert.equal(writeBenchmarkReceiptOnce(fake, receipt, 1000), 'observed_after_error');
 });
+test('durable publication with temporary cleanup failure remains durable', () => {
+  let writes = 0, reads = 0;
+  const fake = {
+    put() { writes++; throw new AuthenticatedStoreWriteError('durable'); },
+    read() { reads++; return receipt; },
+  };
+  assert.equal(writeBenchmarkReceiptOnce(fake, receipt, 1000), 'durable_cleanup_warning');
+  assert.equal(writes, 1); assert.equal(reads, 1);
+});
+test('durable publication is not claimed when readback mismatches', () => {
+  const fake = {
+    put() { throw new AuthenticatedStoreWriteError('durable'); },
+    read() { return { ...receipt, measurementDigest: 'f'.repeat(64) }; },
+  };
+  assert.equal(writeBenchmarkReceiptOnce(fake, receipt, 1000), 'unconfirmed');
+});
