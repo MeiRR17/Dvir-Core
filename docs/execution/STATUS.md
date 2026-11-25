@@ -53,3 +53,5 @@ CI trigger follow-up: the candidate workflow is configured for pushes to the int
 
 
 Latest CI evidence (run #123, exact HEAD `b81bc994a0d84dd758a2af916b221083fc6c28a3`): `npm run test:inventory-storage` passed 105/105; `npm run test:runtime` passed 71/71; strict typecheck passed with zero diagnostics. See `docs/execution/CI_RUN_123.md`. The earlier run #113 is retained as pre-fix history.
+
+Owner approval register: `docs/execution/OWNER_APPROVAL_GATE.md` lists the outstanding terminal-scope, private retention/key, host-probe and actual-inference decisions. It is a decision register, not an authorization.
