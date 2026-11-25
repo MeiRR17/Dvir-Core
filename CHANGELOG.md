@@ -1,3 +1,12 @@
+## 0.0.18 — 2026-11-25 (unreleased; runtime integration candidate)
+- Integrated the 14 runtime source/test files from Agent B's exact PR #13 input SHA into the sole M00 candidate; PR #13 and its branch remain unchanged.
+- Replaced arbitrary MLX filesystem paths with opaque owner-configured environment handles; added static symlink-root and symlink-ancestor denial. Descriptor-relative/openat race protection remains open; host use is blocked.
+- Replaced caller-supplied Ollama ports with an owner-configured endpoint resolver; retained fixed-loopback, GET-only, bounded metadata requests and sanitized resolver failures.
+- Bound benchmark receipts to a private execution fingerprint (model digest, quantization, context size, KV-cache digest, runtime version and host digest); added exact write-once readback recovery for ambiguous publication.
+- Legacy benchmark receipts without execution identity now fail closed; no automatic migration, retry, overwrite or deletion.
+- Expanded pinned CI workflow to include inventory, runtime and storage tests/typecheck. Integrated runtime tests and strict typecheck are NOT_RUN; no CI result observed.
+- No Core-host probe, model load, inference or benchmark. M00 remains incomplete; no merge or release.
+
 ## 0.0.17 — 2026-11-25 (unreleased; M00 consolidation candidate)
 - Created the single integration candidate from PR #4's exact reviewed HEAD; opened draft integration PR #15; preserved PR #4, PR #13 and all earlier draft PRs.
 - Reconciled PR #3 and #5–#12: retained A's prepared-audit contracts; adapted denied classification, case-insensitive owner normalization and late connector cancellation; superseded duplicate reducers/wrappers.
