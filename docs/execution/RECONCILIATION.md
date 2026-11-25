@@ -1,6 +1,6 @@
 # M00 branch reconciliation — 2026-11-25
 
-Status: single candidate created; selected inventory/storage adaptations are fixture-tested. Runtime module integration and full regression remain pending. No source branch or legacy PR was merged, closed or deleted.
+Status: one candidate remains open; selected inventory/storage adaptations have prior fixture evidence. Fourteen runtime source/test files from B's exact input have now been integrated and hardened, but the integrated runtime tests and full regression are NOT_RUN. No source branch or legacy PR was merged, closed or deleted.
 
 ## Fixed inputs and candidate
 
@@ -9,7 +9,7 @@ Status: single candidate created; selected inventory/storage adaptations are fix
 | Agent A input | PR #4 / feat/m00-inventory-0.0.1 | d729710f8eb59d70aea978cfab3d8c594ec9acfc |
 | Agent B input | PR #13 / feat/m00-review-pipeline-0.0.10 | 1ed646b3cf9d80a9c2dd2e92689829ebd6d628c1 |
 | Merge base | A/B comparison | 2af0d0b1350d57138f4c49ba1772da170bca30a1 |
-| Candidate | integration/m00-consolidated-20261125 | created from exact Agent A SHA; draft PR #15; tested source snapshot af5eafddf7accf069dd4993ec9502b265fec8160; subsequent commits are documentation-only; current head/comparison are tracked by live PR metadata |
+| Candidate | integration/m00-consolidated-20261125 | created from exact Agent A SHA; draft PR #15; prior inventory/storage-only test snapshot af5eafddf7accf069dd4993ec9502b265fec8160; runtime files were integrated afterward; current head/comparison are tracked by live PR metadata |
 | PRs | #4 and #13 | preserved, no merge or source edits |
 
 A/B comparison was diverged (A 46 commits ahead of merge base; B 26 commits ahead; 36 changed paths). The candidate is based on A, not a synthetic merge of divergent histories.
@@ -36,7 +36,10 @@ A/B comparison was diverged (A 46 commits ahead of merge base; B 26 commits ahea
 - Preserve the three publication states not_published, published_unconfirmed, and durable. A matching read after a directory-fsync error is reported as published_unconfirmed, not durable. No automatic retry, overwrite or deletion.
 - Add prepared-receipt recovery that compares both the public receipt and every private-binding field before classifying an observed write.
 - Import the storage round-trip, tamper, symlink, hard-bound read and child-process fsync/crash tests. Add canonical-path pinning tests. Static canonical path checks do not claim race-free openat semantics.
-- PR #13 runtime modules are not yet integrated into this candidate; Agent B owns their review and runtime-only handoff. No Ollama/MLX host probe or inference is claimed.
+- Integrated 14 runtime source/test files from PR #13's exact SHA without changing PR #13: benchmark evidence/reducer/store/review, MLX inventory, Ollama inventory/local probe. A owns the single candidate; B's runtime findings are preserved in PR #13 comments #7163395215, #7163853553, #7164245500 and #7164435133. Candidate tests are NOT_RUN.
+- MLX now takes an opaque owner-configured environment handle and statically rejects symlinked roots/ancestors. TOCTOU remains because Node path-based opendir is not descriptor-relative; keep host probe disabled until fixed.
+- Ollama now takes a trusted port resolver, not a caller-controlled port. No generation, model load, redirect, proxy or cloud fallback.
+- Benchmark receipts bind executionDigest (model digest, quantization, context size, KV-cache digest, runtime version, host digest). `receipt_matched` remains stored-evidence matching, not proof of inference. A write-once helper compares every receipt field after errors and never retries/overwrites. Old benchmark receipts without execution identity fail closed.
 
 ## Candidate changes in this cycle
 
@@ -45,4 +48,4 @@ A/B comparison was diverged (A 46 commits ahead of merge base; B 26 commits ahea
 - Prepared receipt recovery and explicit ambiguous-publication status.
 - Inventory owner-case normalization and typed permission-denial classification.
 - Connector late-response cancellation check.
-- Targeted fixture run: 39 Node test entries passed; strict TypeScript check passed for 21 source/test files in an isolated Linux fixture. This is not the complete inventory/runtime/storage regression.
+- Prior targeted inventory/storage fixture run: 39 Node test entries and strict TypeScript check of 21 files passed on snapshot af5eafddf7accf069dd4993ec9502b265fec8160. It does not cover the later runtime files. Runtime tests/full strict typecheck on the integrated tree are NOT_RUN; no CI result observed.
