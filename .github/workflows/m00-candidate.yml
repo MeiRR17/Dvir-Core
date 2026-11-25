@@ -4,9 +4,17 @@ on:
   push:
     branches:
       - integration/m00-consolidated-20261125
+    paths:
+      - 'src/**'
+      - 'package.json'
+      - '.github/workflows/m00-candidate.yml'
   pull_request:
     branches:
       - feat/m00-inventory-0.0.1
+    paths:
+      - 'src/**'
+      - 'package.json'
+      - '.github/workflows/m00-candidate.yml'
   workflow_dispatch:
 
 permissions:
