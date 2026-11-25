@@ -1,12 +1,13 @@
 import { summarizeInventory, type Coverage, type Page, type Repo } from './coverage.ts';
+import { classifyReadError, readWithDeadline, type ReadFailure } from './deadline.ts';
 
 type RecordValue = Record<string, unknown>;
 function record(value: unknown): RecordValue {
   if (typeof value !== 'object' || value === null || Array.isArray(value)) throw new Error('invalid record');
   return value as RecordValue;
 }
-export type PageReader = (request: Readonly<{ owner: string; offset: number; limit: number }>) => Promise<unknown>;
-export type Collection = { coverage: Coverage; stop: 'complete' | 'page_limit' | 'transport_error' | 'invalid_page' };
+export type PageReader = (request: Readonly<{ owner: string; offset: number; limit: number }>, signal: AbortSignal) => Promise<unknown>;
+export type Collection = { coverage: Coverage; stop: 'complete' | 'page_limit' | 'invalid_page' | ReadFailure };
 
 // Only the fields needed by the coverage reducer survive normalization.
 export function normalizePage(value: unknown, offset: number, limit: number): Page {
@@ -24,15 +25,16 @@ export function normalizePage(value: unknown, offset: number, limit: number): Pa
 }
 
 // Fixed-width offsets; a short page must be followed by an explicit empty page.
-// No retries, credentials or raw provider errors. Reader owns cancellation/deadlines.
-export async function collectInventory(reader: PageReader, owner: string, limit = 100, maxPages = 20): Promise<Collection> {
+// No retries, credentials or raw provider errors. Per-page deadline requests abort.
+export async function collectInventory(reader: PageReader, owner: string, limit = 100, maxPages = 20, deadlineMs = 10_000): Promise<Collection> {
+  if (!Number.isSafeInteger(deadlineMs) || deadlineMs < 1 || deadlineMs > 60_000) throw new Error('invalid deadline');
   if (!Number.isInteger(maxPages) || maxPages < 1 || maxPages > 100) throw new Error('invalid page budget');
   const pages: Page[] = [];
   let coverage = summarizeInventory(pages, owner, limit);
   for (let index = 0; index < maxPages; index++) {
     let raw: unknown;
-    try { raw = await reader({ owner, offset: index * limit, limit }); }
-    catch { return { coverage, stop: 'transport_error' }; }
+    try { raw = await readWithDeadline(signal => reader({ owner, offset: index * limit, limit }, signal), deadlineMs); }
+    catch (error) { return { coverage, stop: classifyReadError(error) }; }
     try {
       const page = normalizePage(raw, index * limit, limit);
       const previous = pages.at(-1);
