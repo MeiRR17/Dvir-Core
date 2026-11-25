@@ -16,9 +16,10 @@ export class AuthenticatedStoreWriteError extends Error {
 
 function canonicalDirectory(directory: string): string {
   if (typeof directory !== 'string' || !isAbsolute(directory)) throw new Error('invalid authenticated file directory');
-  const input = lstatSync(directory);
+  const requested = resolve(directory);
+  const input = lstatSync(requested);
   if (!input.isDirectory() || input.isSymbolicLink()) throw new Error('unsafe authenticated file directory');
-  return resolve(realpathSync(directory));
+  return resolve(realpathSync(requested));
 }
 
 export function openAuthenticatedJsonFileStore(directory: string, secret: Uint8Array, domain: string, maxBytes: number) {
