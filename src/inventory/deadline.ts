@@ -1,10 +1,10 @@
-export type ReadFailure = 'deadline' | 'rate_limited' | 'transport_error';
+export type ReadFailure = 'deadline' | 'rate_limited' | 'denied' | 'transport_error';
 export class PageReadError extends Error {
   readonly code: ReadFailure;
   constructor(code: ReadFailure) { super(code); this.code = code; }
 }
 export function classifyReadError(error: unknown): ReadFailure {
-  if (error instanceof PageReadError && ['deadline', 'rate_limited', 'transport_error'].includes(error.code)) return error.code;
+  if (error instanceof PageReadError && ['deadline', 'rate_limited', 'denied', 'transport_error'].includes(error.code)) return error.code;
   return 'transport_error';
 }
 // A timed-out transport may ignore AbortSignal; never retry or start another page after failure.
