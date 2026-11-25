@@ -2,8 +2,10 @@ import { request } from 'node:http';
 import { summarizeOllamaInventory, type RuntimeSummary } from './ollama-inventory.ts';
 export type ProbeState = 'observed' | 'timeout' | 'http_error' | 'transport_error' | 'invalid_response' | 'too_large';
 export type LocalProbe = { inventory: RuntimeSummary; tags: ProbeState; ps: ProbeState };
+export type ApprovedOllamaPortResolver = () => number;
 type Result = { state: ProbeState; value: unknown };
 const MAX_BYTES = 1024 * 1024;
+
 function read(port: number, path: '/api/tags' | '/api/ps', deadlineMs: number): Promise<Result> {
   return new Promise(resolve => {
     let settled = false;
@@ -43,11 +45,19 @@ function read(port: number, path: '/api/tags' | '/api/ps', deadlineMs: number): 
     req.end();
   });
 }
-// Explicit invocation only; fixed IPv4 loopback, two GET endpoints, no redirects,
-// credentials, proxies, generation, model loading, or cloud fallback.
-export async function probeLocalOllama(port = 11434, deadlineMs = 2000): Promise<LocalProbe> {
-  if (!Number.isSafeInteger(port) || port < 1 || port > 65535 || !Number.isSafeInteger(deadlineMs) || deadlineMs < 1 || deadlineMs > 10000) throw new Error('invalid local probe configuration');
-  const tags = await read(port, '/api/tags', deadlineMs);
-  const ps = await read(port, '/api/ps', deadlineMs);
-  return { inventory: summarizeOllamaInventory(tags.value, ps.value), tags: tags.state, ps: ps.state };
+
+// Endpoint authority is injected from owner-controlled local configuration.
+// The public probe accepts only a deadline; callers cannot choose a raw port.
+// Fixed IPv4 loopback and GET-only endpoints; no redirects, credentials, proxy,
+// generation, model loading, or cloud fallback.
+export function createLocalOllamaProbe(resolveApprovedPort: ApprovedOllamaPortResolver) {
+  if (typeof resolveApprovedPort !== 'function') throw new Error('invalid Ollama endpoint resolver');
+  return async function probeLocalOllama(deadlineMs = 2000): Promise<LocalProbe> {
+    if (!Number.isSafeInteger(deadlineMs) || deadlineMs < 1 || deadlineMs > 10000) throw new Error('invalid local probe configuration');
+    const port = resolveApprovedPort();
+    if (!Number.isSafeInteger(port) || port < 1 || port > 65535) throw new Error('invalid approved Ollama endpoint');
+    const tags = await read(port, '/api/tags', deadlineMs);
+    const ps = await read(port, '/api/ps', deadlineMs);
+    return { inventory: summarizeOllamaInventory(tags.value, ps.value), tags: tags.state, ps: ps.state };
+  };
 }
