@@ -1,4 +1,9 @@
 # Changelog
+## 0.0.4 — 2026-11-25 (unreleased)
+- Typed capability ownership boundaries and source-reviewed dependency matrix.
+- Full fixture regression: five scripts, 75 reported checks; strict erasable-syntax typecheck.
+- Read-only runtime and model residency probe; no inference or integration claim.
+
 ## 0.0.3 — 2026-11-25 (unreleased)
 - Per-page deadline, abort signal, typed rate-limit/transport failures; preserve partial coverage.
 - Fourteen new fixture checks and strict typecheck; corrected Node strip-only syntax compatibility.
