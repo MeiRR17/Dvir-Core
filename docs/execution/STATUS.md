@@ -1,4 +1,4 @@
-# Execution status — 0.0.16 (2026-11-25)
+# Execution status — 0.0.17 (2026-11-25)
 Base: reviewed master-plan commit b0e52cf76f688de52eb1c9a9d21786c12bcb7c0e; stacked on draft plan PR #2, not main. Foundation PR #1 also pending.
 
 | Work package | State | Acceptance |
@@ -25,4 +25,15 @@ Base: reviewed master-plan commit b0e52cf76f688de52eb1c9a9d21786c12bcb7c0e; stac
 | M00.6 actual model/runtime inventory | PLANNED (partial probe) | approved runtime metadata and benchmark; no inference benchmark yet |
 | M01–M12 | PLANNED | dependency gates in master plan |
 
-Next exact task: perform the real repository decision/source audit in read-only mode, record public-safe coverage and unresolved decisions, and review the remaining M00 acceptance gates. Do not add further receipt abstractions unless a concrete acceptance failure requires them. Actual authority implementation, approved retention, Core terminal mapping, live adapter execution and model qualification remain open. M01 acceptance gated. No merge or release.
+## 0.0.17 — consolidation candidate
+
+| Work package | State | Acceptance |
+|---|---|---|
+| M00.5m shared authenticated storage integration | IMPLEMENTED / FIXTURE_PASS | v1 receipt envelope and HMAC domain preserved; prepared binding retained; fault outcomes tested |
+| M00.5n PR #3/#5–#12 reconciliation | IMPLEMENTED / REVIEW_PENDING | file-level decisions in RECONCILIATION.md; no duplicate reducer/wrapper imported |
+| M00.5o owner and cancellation hardening | IMPLEMENTED / FIXTURE_PASS | case-insensitive requested-owner login only; typed denied; late connector response discarded |
+| M00.5p targeted candidate validation | FIXTURE_PASS | 39 Node test entries and strict typecheck of 21 files in isolated Linux fixture; not full regression |
+| M00.6 PR #13 runtime integration | PLANNED / AGENT B REVIEW | Ollama/MLX and benchmark modules not yet integrated or qualified |
+| M00.4 Core terminal mapping | OWNER_BLOCKED | terminal connector still advertises Music and DvirStudio only |
+
+Next exact task: Agent B reviews the candidate's runtime integration contracts and returns a runtime-only handoff without modifying inventory/shared storage. Agent A then reconciles runtime modules and runs the complete inventory/runtime/storage suite on one candidate tree. M00 remains incomplete; M01 gated. No merge, deployment or release. 
