@@ -1,4 +1,9 @@
 # Changelog
+## 0.0.12 — 2026-11-25 (unreleased)
+- Live GitHub connector schema observation and fixture-tested envelope adapter with strict personal-owner validation and minimal metadata projection.
+- Ten new tests; 13-file regression (43 Node test entries); strict typecheck of 24 files.
+- Live adapter execution, private retention and Core-local qualification remain pending.
+
 ## 0.0.11 — 2026-11-25 (unreleased)
 - Composed bounded collection and receipt-backed review; sanitized in-memory pages and explicit unobserved review counts.
 - Ten new integration tests, full 12-file regression and strict typecheck; approved-host runtime smoke.
