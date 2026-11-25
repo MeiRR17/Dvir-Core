@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - integration/m00-consolidated-20261125
+  pull_request:
+    branches:
+      - feat/m00-inventory-0.0.1
   workflow_dispatch:
 
 permissions:
