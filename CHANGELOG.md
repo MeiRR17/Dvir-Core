@@ -1,4 +1,9 @@
 # Changelog
+## 0.0.15 — 2026-11-25 (unreleased)
+- Atomic prepared receipt and private binding persistence in existing HMAC store, with canonical handle verification and legacy compatibility.
+- Five new tests; 72 passing Node test entries in 15 local fixture files (connector suite excluded), strict typecheck and approved-host integrity primitive probe.
+- Authenticated live lookup, approved retention and Core-local qualification remain pending.
+
 ## 0.0.14 — 2026-11-25 (unreleased)
 - Bounded audit intake and exact evidence digest, source SHA, receipt and current approval binding verification.
 - 17 targeted tests including authenticated file receipt integration; strict typecheck of local fixture set and approved-host digest smoke.
