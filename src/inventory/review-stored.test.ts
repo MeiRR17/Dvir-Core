@@ -1,0 +1,38 @@
+import { mkdtempSync, readFileSync, writeFileSync, chmodSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import { strict as assert } from 'node:assert';
+import { openReceiptStore, type Receipt } from './receipt-store.ts';
+import { reviewStoredInventory } from './review-stored.ts';
+import type { Review } from './decisions.ts';
+const directory = mkdtempSync(join(tmpdir(), 'core-review-fixture-'));
+const owner = 'fixture';
+const key = Buffer.alloc(32, 7);
+const revision = 'a'.repeat(40);
+const options = { directory, owner, key, revision, maxAgeMs: 20, now: 20, pageSize: 2 };
+const row = (id: number, archived: boolean) => ({ id, owner: { login: owner }, visibility: 'private', archived });
+const pages = [{ offset: 0, repositories: [row(1, false), row(2, true)] }, { offset: 2, repositories: [] }];
+const first: Receipt = { handle: 'receipt:one', owner, repositoryId: '1', decision: 'adopt', revision, observedAt: 10, expiresAt: 30 };
+const second: Receipt = { ...first, handle: 'receipt:two', repositoryId: '2', decision: 'defer' };
+const reviews: Review[] = [{ id: '1', decision: 'adopt', evidence: first.handle }, { id: '2', decision: 'defer', evidence: second.handle }];
+try {
+  const store = openReceiptStore(directory, owner, key, 20);
+  store.put(first, 20);
+  assert.equal(reviewStoredInventory(options, pages, reviews).unresolved, 1);
+  store.put(second, 20);
+  const result = reviewStoredInventory(options, pages, reviews);
+  assert.deepEqual(result, { summary: { repositories: 2, archived: 1, active: 1, adopt: 1, defer: 1, not_applicable: 0, unknown: 0, complete: true }, unresolved: 0 });
+  assert.equal(reviewStoredInventory(options, pages.slice(0, 1), reviews).summary.complete, false);
+  assert.equal(reviewStoredInventory({ ...options, now: 30 }, pages, reviews).unresolved, 2);
+  assert.equal(reviewStoredInventory({ ...options, key: Buffer.alloc(32, 8) }, pages, reviews).unresolved, 2);
+  assert.equal(reviewStoredInventory({ ...options, revision: 'b'.repeat(40) }, pages, reviews).unresolved, 2);
+  assert.equal(reviewStoredInventory(options, pages, [{ ...reviews[0], evidence: second.handle }, reviews[1]]).unresolved, 1);
+  assert.equal(JSON.stringify(result).includes('receipt:'), false);
+  const path = join(directory, 'one.json');
+  const original = readFileSync(path, 'utf8');
+  writeFileSync(path, original.replace('adopt', 'defer'));
+  assert.equal(reviewStoredInventory(options, pages, reviews).summary.unknown, 1);
+  chmodSync(directory, 0o755);
+  assert.throws(() => reviewStoredInventory(options, pages, reviews));
+  console.log('10 stored-review integration assertions passed');
+} finally { chmodSync(directory, 0o700); rmSync(directory, { recursive: true, force: true }); }
