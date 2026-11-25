@@ -1,0 +1,61 @@
+name: M00 candidate verification
+
+on:
+  push:
+    branches:
+      - integration/m00-consolidated-20261125
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: m00-candidate
+  cancel-in-progress: true
+
+jobs:
+  inventory-storage:
+    name: Inventory and authenticated storage
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout candidate
+        uses: actions/checkout@v4
+
+      - name: Set compatible Node runtime
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.18.0
+
+      - name: Install pinned typecheck tools outside the repository
+        run: |
+          npm install \
+            --prefix "$RUNNER_TEMP/dvir-core-tools" \
+            --no-save \
+            --no-package-lock \
+            --ignore-scripts \
+            --no-audit \
+            --no-fund \
+            typescript@5.9.3 @types/node@22.20.5
+
+      - name: Report toolchain
+        run: |
+          node --version
+          npm --version
+          "$RUNNER_TEMP/dvir-core-tools/node_modules/.bin/tsc" --version
+
+      - name: Run all inventory and storage tests
+        run: node --experimental-strip-types --test src/inventory/*.test.ts src/storage/*.test.ts
+
+      - name: Strict typecheck all inventory and storage TypeScript
+        run: |
+          "$RUNNER_TEMP/dvir-core-tools/node_modules/.bin/tsc" \
+            --noEmit \
+            --strict \
+            --erasableSyntaxOnly \
+            --target es2022 \
+            --module nodenext \
+            --allowImportingTsExtensions \
+            --typeRoots "$RUNNER_TEMP/dvir-core-tools/node_modules/@types" \
+            --types node \
+            src/inventory/*.ts src/storage/*.ts
