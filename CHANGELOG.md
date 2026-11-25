@@ -1,4 +1,9 @@
 # Changelog
+## 0.0.7 — 2026-11-25 (unreleased)
+- Authenticated private receipt file-store candidate with immutable publication and logical retention.
+- 18 filesystem fixture checks and strict TypeScript verification; approved-host HMAC primitive smoke.
+- No production store, key provisioning or Core-local verification.
+
 ## 0.0.6 — 2026-11-25 (unreleased)
 - Review pipeline joins validated pages, archive observations, decisions and a private receipt-reader interface.
 - Exact receipt binding and freshness checks; unresolved evidence remains unknown.
