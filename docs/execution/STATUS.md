@@ -1,4 +1,4 @@
-# Execution status — 0.0.15 (2026-11-25)
+# Execution status — 0.0.16 (2026-11-25)
 Base: reviewed master-plan commit b0e52cf76f688de52eb1c9a9d21786c12bcb7c0e; stacked on draft plan PR #2, not main. Foundation PR #1 also pending.
 
 | Work package | State | Acceptance |
@@ -21,7 +21,8 @@ Base: reviewed master-plan commit b0e52cf76f688de52eb1c9a9d21786c12bcb7c0e; stac
 | M00.5i scoped receipt preparation and retention policy | IMPLEMENTED / FIXTURE_PASS | 17 targeted tests; proposed policy, not approved retention |
 | M00.5j private evidence binding and bounded intake | IMPLEMENTED / FIXTURE_PASS | 17 targeted tests, exact source/digest/approval binding, batch limits, stored receipt integration |
 | M00.5k atomic prepared receipt persistence | IMPLEMENTED / FIXTURE_PASS | five new tests, HMAC-protected binding, reopen and revocation fixture |
+| M00.5l prepared audit entry point | IMPLEMENTED / FIXTURE_PASS | 9 new tests, 91 Node test entries across 17 local test files; explicit trusted authority contract |
 | M00.6 actual model/runtime inventory | PLANNED (partial probe) | approved runtime metadata and benchmark; no inference benchmark yet |
 | M01–M12 | PLANNED | dependency gates in master plan |
 
-Next exact task: define a fail-closed authenticated current approval/source lookup boundary and a canonical audit entry point that requires prepared receipts. Complete the real per-repository audit and host/model inventory under approved scope. Core mapping OWNER_BLOCKED; retention policy not approved; live adapter and actual crash/macOS durability not verified. M00 incomplete; M01 acceptance gated. No merge or release.
+Next exact task: perform the real repository decision/source audit in read-only mode, record public-safe coverage and unresolved decisions, and review the remaining M00 acceptance gates. Do not add further receipt abstractions unless a concrete acceptance failure requires them. Actual authority implementation, approved retention, Core terminal mapping, live adapter execution and model qualification remain open. M01 acceptance gated. No merge or release.
