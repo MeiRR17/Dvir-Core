@@ -1,4 +1,4 @@
-# Execution status — 0.0.2 (2026-11-25)
+# Execution status — 0.0.3 (2026-11-25)
 Base: reviewed master-plan commit b0e52cf76f688de52eb1c9a9d21786c12bcb7c0e; stacked on draft plan PR #2, not main. Foundation PR #1 also pending.
 
 | Work package | State | Acceptance |
@@ -12,4 +12,6 @@ Base: reviewed master-plan commit b0e52cf76f688de52eb1c9a9d21786c12bcb7c0e; stac
 | M00.6 actual model/runtime inventory | PLANNED (partial probe) | approved runtime metadata and benchmark; no inference benchmark yet |
 | M01–M12 | PLANNED | dependency gates in master plan |
 
-Next exact task: review dependency manifests/contracts and ADRs, record public-safe adoption decisions, then reconcile overlapping M00 draft PR #3 with #4 without merging or closing either. Add reader deadline/rate-limit classification and test live connector contract when Core scope permits. Core-local tests remain OWNER_BLOCKED. No release or integration claimed.
+| M00.2b deadline and typed failure classification | IMPLEMENTED / FIXTURE_PASS | ten new assertions; exact blobs verified |
+
+Next exact task: review dependency manifests/contracts and ADRs, record public-safe adoption decisions, then reconcile overlapping M00 draft PR #3 with #4 without merging or closing either. Review the consolidated reader against PR #5 and test the live connector contract when Core scope permits. PR #3 and #5 remain open; no merge. Cancellation is cooperative; no actual transport wired. Core-local tests remain OWNER_BLOCKED. No release or integration claimed.
