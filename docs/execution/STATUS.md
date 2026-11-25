@@ -1,4 +1,4 @@
-# Execution status — 0.0.10 (2026-11-25)
+# Execution status — 0.0.11 (2026-11-25)
 Base: reviewed master-plan commit b0e52cf76f688de52eb1c9a9d21786c12bcb7c0e; stacked on draft plan PR #2, not main. Foundation PR #1 also pending.
 
 | Work package | State | Acceptance |
@@ -16,7 +16,8 @@ Base: reviewed master-plan commit b0e52cf76f688de52eb1c9a9d21786c12bcb7c0e; stac
 | M00.5d receipt hardening | IMPLEMENTED / FIXTURE_PASS | 13 new checks, 18 previous checks rerun; runtime schema, hard read bound, duplicate retry denial |
 | M00.5e stored-receipt review integration | IMPLEMENTED / FIXTURE_PASS | 8 integration tests and 31 existing storage checks; aggregate-only output |
 | M00.5f receipt write recovery classification | IMPLEMENTED / FIXTURE_PASS | six recovery tests, injected file/directory fsync failures, 39 regression checks |
+| M00.5g bounded collected review pipeline | IMPLEMENTED / FIXTURE_PASS | 10 new tests; all 12 fixture files and strict typecheck pass |
 | M00.6 actual model/runtime inventory | PLANNED (partial probe) | approved runtime metadata and benchmark; no inference benchmark yet |
 | M01–M12 | PLANNED | dependency gates in master plan |
 
-Next exact task: connect bounded collection to stored review without retaining raw provider data; validate malformed and partial collection states in an end-to-end fixture. Actual process crash, power-loss/macOS durability, live per-repository audit, approved private retention and Core terminal scope remain unverified. M00 incomplete; no release or merge.
+Next exact task: verify live connector schema (including archive field and stable numeric identity) against the normalized reader contract and design a scoped private audit receipt provisioning path. Complete the actual per-repository decisions and runtime benchmark only under approved scope. Core terminal mapping, retention authorization, actual crash and macOS durability remain unverified; M00 incomplete and M01 acceptance gated. No merge or release.
