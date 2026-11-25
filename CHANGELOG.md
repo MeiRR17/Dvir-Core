@@ -1,4 +1,9 @@
 # Changelog
+## 0.0.11 — 2026-11-25 (unreleased)
+- Composed bounded collection and receipt-backed review; sanitized in-memory pages and explicit unobserved review counts.
+- Ten new integration tests, full 12-file regression and strict typecheck; approved-host runtime smoke.
+- Real audit, model benchmark, private retention and Core scope remain pending.
+
 ## 0.0.10 — 2026-11-25 (unreleased)
 - Single-attempt receipt write recovery with explicit visibility-versus-durability classification.
 - Six fault/recovery tests plus 39 prior storage and integration checks; strict typecheck.
