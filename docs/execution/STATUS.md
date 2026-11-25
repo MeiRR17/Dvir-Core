@@ -33,6 +33,7 @@ Base: reviewed master-plan commit b0e52cf76f688de52eb1c9a9d21786c12bcb7c0e; stac
 | M00.5n PR #3/#5–#12 reconciliation | IMPLEMENTED / REVIEW_PENDING | file-level decisions in RECONCILIATION.md; no duplicate reducer/wrapper imported |
 | M00.5o owner and cancellation hardening | IMPLEMENTED / FIXTURE_PASS | case-insensitive requested-owner login only; typed denied; late connector response discarded |
 | M00.5p targeted candidate validation | FIXTURE_PASS | 39 Node test entries and strict typecheck of 21 files in isolated Linux fixture; not full regression |
+| M00.5q personal repository screening | PARTIAL / SCREENING | 83/83 personal-owner records enumerated; 69 README files available, 14 empty/missing; selected domain boundaries documented; full branch/manifest audit pending |
 | M00.6 PR #13 runtime integration | PLANNED / AGENT B REVIEW | Ollama/MLX and benchmark modules not yet integrated or qualified |
 | M00.4 Core terminal mapping | OWNER_BLOCKED | terminal connector still advertises Music and DvirStudio only |
 
