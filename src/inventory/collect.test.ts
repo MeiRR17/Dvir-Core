@@ -1,4 +1,5 @@
 import { collectInventory, normalizePage, type PageReader } from './collect.ts';
+import { PageReadError } from './deadline.ts';
 const row = (id: string | number, login = 'fixture', visibility = 'public') => ({ id, owner: { login }, visibility, secret: 'fixture-secret' });
 const page = (...repositories: unknown[]) => ({ repositories });
 function equal(actual: unknown, expected: unknown): void {
@@ -20,9 +21,15 @@ async function run(): Promise<void> {
   const partial = await collectInventory(async ({ offset }) => { if (offset) throw new Error('fixture-secret'); return page(row(1), row(2)); }, 'fixture', 2);
   equal(partial, { coverage: { complete: false, count: 2, publicCount: 2, pageCount: 1 }, stop: 'transport_error' });
   equal((await collectInventory(async () => page(), 'fixture')).coverage.complete, true);
+  equal((await collectInventory(async () => page(row(1, 'FIXTURE')), 'fixture')).coverage.count, 1);
+  equal((await collectInventory(async ({ offset }) => offset ? page() : page(row(1, 'FIXTURE')), 'fixture', 1)).coverage.complete, true);
+  equal((await collectInventory(async () => { throw new PageReadError('denied'); }, 'fixture')).stop, 'denied');
+  let invalidOwnerCalls = 0; let invalidOwnerRejected = false;
+  try { await collectInventory(async () => { invalidOwnerCalls++; return page(); }, 'bad/owner'); } catch { invalidOwnerRejected = true; }
+  equal([invalidOwnerRejected, invalidOwnerCalls], [true, 0]);
   let rejected = false;
   try { await collectInventory(async () => page(), 'fixture', 2, 0); } catch { rejected = true; }
   equal(rejected, true);
-  console.log('13 fixture cases passed');
+  console.log('17 collector fixture cases passed');
 }
 void run();
