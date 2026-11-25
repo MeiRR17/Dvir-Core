@@ -1,4 +1,8 @@
 # Changelog
+## 0.0.15 — 2026-11-25 (unreleased)
+- Add provider-neutral, bounded benchmark measurement reducer for Ollama and MLX; unknown metrics remain null.
+- Eight isolated Node fixture tests and strict TypeScript check passed. No actual benchmark, MLX discovery or deployment.
+
 ## 0.0.14 — 2026-11-25 (unreleased)
 - Read-only loopback Ollama metadata probe with request deadlines, bounded response streams and separate endpoint status.
 - Eight new local HTTP fixture tests plus twelve metadata regressions passed; strict typecheck passed.

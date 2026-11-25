@@ -1,0 +1,13 @@
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import { summarizeBenchmark } from './benchmark.ts';
+const row = { firstTokenMs: 100, decodeMs: 2000, completionTokens: 20, peakProcessBytes: 500, structuredSuccess: true, toolSuccess: false };
+const batch = (samples: unknown[]) => ({ provider: 'mlx', source: 'fixture', samples });
+test('unobserved remains null', () => assert.equal(summarizeBenchmark(null), null));
+test('median and complete measurements', () => assert.deepEqual(summarizeBenchmark(batch([row, { ...row, firstTokenMs: 300, completionTokens: 40, peakProcessBytes: 700 }])), { provider: 'mlx', source: 'fixture', samples: 2, medianFirstTokenMs: 200, medianTokensPerSecond: 15, peakProcessBytes: 700, structuredSuccesses: 2, toolSuccesses: 0 }));
+test('partial metrics stay unknown', () => { const result = summarizeBenchmark(batch([row, { ...row, peakProcessBytes: null, structuredSuccess: null, toolSuccess: null }])); assert.equal(result?.peakProcessBytes, null); assert.equal(result?.structuredSuccesses, null); assert.equal(result?.toolSuccesses, null); });
+test('odd median and no raw identity leakage', () => { const result = summarizeBenchmark(batch([{ ...row, model: 'private', prompt: 'secret' }, { ...row, firstTokenMs: 5 }, { ...row, firstTokenMs: 500 }])); assert.equal(result?.medianFirstTokenMs, 100); assert.doesNotMatch(JSON.stringify(result), /private|secret/); });
+test('reject unknown provider and source', () => { for (const invalid of [{ provider: 'cloud' }, { source: 'verified' }]) assert.throws(() => summarizeBenchmark({ ...batch([row]), ...invalid }), /invalid benchmark/); });
+test('reject invalid sample counts', () => { for (const samples of [[], Array(101).fill(row)]) assert.throws(() => summarizeBenchmark(batch(samples)), /invalid benchmark/); });
+test('reject invalid numeric fields', () => { for (const invalid of [{ decodeMs: 0 }, { firstTokenMs: -1 }, { completionTokens: 0 }, { completionTokens: 1.5 }, { peakProcessBytes: Infinity }]) assert.throws(() => summarizeBenchmark(batch([{ ...row, ...invalid }])), /invalid benchmark/); });
+test('reject malformed optional observations', () => { for (const invalid of [{ structuredSuccess: 'yes' }, { toolSuccess: undefined }, { peakProcessBytes: undefined }]) assert.throws(() => summarizeBenchmark(batch([{ ...row, ...invalid }])), /invalid benchmark/); });
