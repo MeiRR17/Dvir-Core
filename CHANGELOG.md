@@ -1,4 +1,8 @@
 # Changelog
+## 0.0.13 — 2026-11-25 (unreleased)
+- Add privacy-preserving Ollama installed/running model inventory summaries with strict bounded validation and explicit unobserved state.
+- Twelve new tests and strict typecheck pass. No live runtime or inference.
+
 ## 0.0.12 — 2026-11-25 (unreleased)
 - Reconcile parallel collection paths using one internal minimized-page collector; preserve strict and partial review policies.
 - Reuse receipt recovery and fault-injection tests from PR #4.
