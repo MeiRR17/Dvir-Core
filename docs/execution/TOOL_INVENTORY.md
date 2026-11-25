@@ -13,3 +13,5 @@ No install, permission expansion, public endpoint or duplicate terminal server.
 0.0.2: added injectable bounded page reader for normalized connector-shaped repository responses, synthetic only. Related dependency default-branch/PR metadata refreshed; full interface, license and overlap audit pending. Existing terminal remains the sole approved execution channel for local host checks.
 
 0.0.4: [source review and ownership matrix](DEPENDENCY_AUDIT.md) recorded. No external MCP installation or duplicate terminal bridge. No browser automation dependency introduced.
+
+0.0.12: verified the existing GitHub list_repositories response shape using personal-owner bounded reads. Added fixture-tested injected connector reader. No live runtime wiring, additional connector or scope expansion.
