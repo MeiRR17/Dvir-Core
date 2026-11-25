@@ -4,6 +4,7 @@
 - Replaced caller-supplied Ollama ports with an owner-configured endpoint resolver; retained fixed-loopback, GET-only, bounded metadata requests and sanitized resolver failures.
 - Bound benchmark receipts to a private execution fingerprint (model digest, quantization, context size, KV-cache digest, runtime version and host digest); added exact write-once readback recovery for ambiguous publication.
 - Legacy benchmark receipts without execution identity now fail closed; no automatic migration, retry, overwrite or deletion.
+- Preserved durable publication state when cleanup fails after fsync; added separate durable-cleanup-warning outcome and exact-readback tests.
 - Expanded pinned CI workflow to include inventory, runtime and storage tests/typecheck. Integrated runtime tests and strict typecheck are NOT_RUN; no CI result observed.
 - No Core-host probe, model load, inference or benchmark. M00 remains incomplete; no merge or release.
 
