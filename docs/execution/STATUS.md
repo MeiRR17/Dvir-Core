@@ -44,3 +44,5 @@ Next exact task: obtain Agent B's read-only review of the integrated runtime fil
 Current integration pointer: draft PR #15, based on PR #4 head d729710f8eb59d70aea978cfab3d8c594ec9acfc. Prior tested source snapshot af5eafddf7accf069dd4993ec9502b265fec8160 covers the earlier inventory/storage fixture only. Runtime integration source snapshot b0851df05ba37f3ecf32f5b1f071fcedbf1115a9 includes the 14 runtime files, MLX root guard and receipt publication-outcome correction; runtime tests and strict typecheck on this tree are NOT_RUN. PR metadata is authoritative for the current candidate HEAD and commit count. Draft only; no merge.
 
 Receipt publication outcome correction is included in the latest source snapshot: durable-after-cleanup-error is not downgraded to generic observed readback. Two focused tests added; NOT_RUN. No CI pass claimed.
+
+MLX security handoff: descriptor-anchored implementation and Linux + macOS/APFS fixture qualification are still pending with Agent B. The acceptance design is in `docs/execution/MLX_DESCRIPTOR_BOUNDARY.md`; it is not an implementation or test result.
