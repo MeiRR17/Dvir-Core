@@ -1,4 +1,9 @@
 # Changelog
+## 0.0.11 — 2026-11-25 (unreleased)
+- Integrate authenticated local receipts with bounded inventory pipeline. Store setup failure precedes provider access.
+- Five new filesystem integration tests, 22 Node entries total passed; strict typecheck and 14 remote blobs verified.
+- No live provider integration or deployment.
+
 ## 0.0.10 — 2026-11-25 (unreleased)
 - Compose owner-scoped GitHub reader, bounded collector and evidence review; skip review on partial inventory and return counts only.
 - Seven new pipeline tests and related reader/review regressions pass; strict typecheck and ten matching remote blobs.
