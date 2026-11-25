@@ -45,7 +45,7 @@ jobs:
           "$RUNNER_TEMP/dvir-core-tools/node_modules/.bin/tsc" --version
 
       - name: Run all inventory, runtime and storage tests
-        run: node --experimental-strip-types --test src/inventory/*.test.ts src/runtime/*.test.ts src/storage/*.test.ts
+        run: npm test
 
       - name: Strict typecheck all inventory, runtime and storage TypeScript
         run: |
