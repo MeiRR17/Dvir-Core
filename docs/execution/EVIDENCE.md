@@ -74,3 +74,9 @@ Isolated Linux Node v22.16.0 / TypeScript 5.8.3. `node --experimental-strip-type
 
 ## 0.0.15 — benchmark measurement reducer
 Isolated Linux Node v22.16.0 / TypeScript 5.8.3. `node --experimental-strip-types --test benchmark.test.ts` — 8/8 pass; `tsc --noEmit --strict --target es2022 --module nodenext --allowImportingTsExtensions --typeRoots /usr/local/slides_js/node_modules/@types --types node *.ts` — exit 0 in two-file fixture. Tested Git blobs: benchmark.ts ee3e052f303007ebc5106528db9c631ce636c00c; benchmark.test.ts be9f423e633a647d72dd3a97e8080c55da424755. No actual model execution, MLX discovery, owner-host testing or regression run of other suites.
+
+
+## 0.0.16 — MLX distribution metadata discovery
+- Isolated Linux, Node 22.16.0 and TypeScript 5.8.3. `node --experimental-strip-types --test mlx-inventory.test.ts` — seven tests passed, exit 0. `tsc --noEmit --strict --erasableSyntaxOnly --target es2022 --module nodenext --allowImportingTsExtensions --typeRoots /opt/nvm/versions/node/v22.16.0/lib/node_modules/ts-node/node_modules/@types --types node mlx-inventory.ts mlx-inventory.test.ts` — exit 0. Tested blobs: e02707b3e53da9493714de370962942c17aac3b0 and 8c7d4903aecc66a752c614183441a7d262077503. Prior suites not rerun.
+- Explicit caller-approved site-packages directory only; scans distribution directory names with a hard entry limit, does not follow child symlinks or read package contents; missing, ambiguous and incomplete evidence are distinct. Caller must authorize and resolve the root path; no filesystem wall-clock deadline or actual import verification. Legacy editable installs and nonstandard metadata are not covered. No paths, versions or model names returned.
+- Existing terminal read-only check in approved scope confirmed reachability; Core not advertised. No Core-local execution, inference, merge or deployment.

@@ -1,4 +1,8 @@
 # Changelog
+## 0.0.16 — 2026-11-25 (unreleased)
+- Add bounded, read-only MLX distribution-directory discovery for mlx, mlx-lm and mlx-vlm without importing Python packages or reading model caches.
+- Seven isolated filesystem fixture tests and strict typecheck passed. No live MLX discovery or inference.
+
 ## 0.0.15 — 2026-11-25 (unreleased)
 - Add provider-neutral, bounded benchmark measurement reducer for Ollama and MLX; unknown metrics remain null.
 - Eight isolated Node fixture tests and strict TypeScript check passed. No actual benchmark, MLX discovery or deployment.
