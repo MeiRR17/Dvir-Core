@@ -34,7 +34,7 @@ Base: reviewed master-plan commit b0e52cf76f688de52eb1c9a9d21786c12bcb7c0e; stac
 | M00.5n PR #3/#5–#12 reconciliation | IMPLEMENTED / REVIEW_PENDING | file-level decisions in RECONCILIATION.md; no duplicate reducer/wrapper imported |
 | M00.5o owner and cancellation hardening | IMPLEMENTED / FIXTURE_PASS | case-insensitive requested-owner login only; typed denied; late connector response discarded |
 | M00.5p targeted candidate validation | FIXTURE_PASS | 39 Node test entries and strict typecheck of 21 files in isolated Linux fixture; not full regression |
-| M00.5q personal repository screening | PARTIAL / SCREENING | 83/83 personal-owner records enumerated; 69 README files available, 14 empty/missing; selected domain boundaries documented; full branch/manifest audit pending |
+| M00.5q personal repository screening | PARTIAL / SCREENING | 83/83 personal-owner records enumerated; 69 README files available, 14 empty/missing; selected boundaries documented; 310 dvir-os, 452 Corpora and 314 IEA branches fully paginated; PR search and manifest/source audit remain partial |
 | M00.5r pinned candidate CI | IMPLEMENTED / RUN_PENDING | Workflow pins Node 22.18.0, TypeScript 5.9.3 and @types/node 22.20.5; now includes inventory/runtime/storage suites; no run result observed |
 | M00.6a PR #13 runtime integration | IMPLEMENTED / REVIEW_PENDING | 14 runtime source/test files integrated from B SHA; A hardened three trust/recovery contracts; tests not run |
 | M00.6b runtime acceptance | PARTIAL / NOT_RUN | MLX static symlink-root/ancestor denial and owner resolver; Ollama trusted port resolver; execution fingerprint; benchmark write-once recovery; TOCTOU and actual host qualification remain open |
