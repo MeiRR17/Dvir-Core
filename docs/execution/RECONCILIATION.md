@@ -9,7 +9,7 @@ Status: single candidate created; selected inventory/storage adaptations are fix
 | Agent A input | PR #4 / feat/m00-inventory-0.0.1 | d729710f8eb59d70aea978cfab3d8c594ec9acfc |
 | Agent B input | PR #13 / feat/m00-review-pipeline-0.0.10 | 1ed646b3cf9d80a9c2dd2e92689829ebd6d628c1 |
 | Merge base | A/B comparison | 2af0d0b1350d57138f4c49ba1772da170bca30a1 |
-| Candidate | integration/m00-consolidated-20261125 | created from exact Agent A SHA; final draft PR #15 HEAD 131e644dcff5a6bd8162526cf8c81427c7766848; 18 commits ahead, 0 behind. Source/test snapshot 5744b57097ea2f07b23960e5d2cbeac256f5166b was tested before documentation-only commits. |
+| Candidate | integration/m00-consolidated-20261125 | created from exact Agent A SHA; final draft PR #15; 20 commits ahead, 0 behind at tested source snapshot af5eafddf7accf069dd4993ec9502b265fec8160. Subsequent commits are documentation-only. |
 | PRs | #4 and #13 | preserved, no merge or source edits |
 
 A/B comparison was diverged (A 46 commits ahead of merge base; B 26 commits ahead; 36 changed paths). The candidate is based on A, not a synthetic merge of divergent histories.
