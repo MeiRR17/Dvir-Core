@@ -37,6 +37,7 @@ export function createMlxMetadataProbe(resolveApprovedSitePackages: ApprovedMlxE
     try { directory = resolveApprovedSitePackages(environmentHandle); } catch { return unknown('unavailable'); }
     if (typeof directory !== 'string' || !isAbsolute(directory)) return unknown('unavailable');
     const absolute = resolve(directory);
+    if (absolute === parse(absolute).root) return unknown('unavailable');
     try {
       if (await hasSymlinkedPathComponent(absolute)) return unknown('unavailable');
       if (await realpath(absolute) !== absolute) return unknown('unavailable');
