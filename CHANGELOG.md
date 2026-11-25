@@ -1,4 +1,9 @@
 # Changelog
+## 0.0.14 — 2026-11-25 (unreleased)
+- Read-only loopback Ollama metadata probe with request deadlines, bounded response streams and separate endpoint status.
+- Eight new local HTTP fixture tests plus twelve metadata regressions passed; strict typecheck passed.
+- No live Ollama invocation, deployment or merge.
+
 ## 0.0.13 — 2026-11-25 (unreleased)
 - Add privacy-preserving Ollama installed/running model inventory summaries with strict bounded validation and explicit unobserved state.
 - Twelve new tests and strict typecheck pass. No live runtime or inference.

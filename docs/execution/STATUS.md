@@ -1,4 +1,4 @@
-# Execution status — 0.0.13 (2026-11-25)
+# Execution status — 0.0.14 (2026-11-25)
 Base: reviewed master-plan commit b0e52cf76f688de52eb1c9a9d21786c12bcb7c0e; stacked on draft plan PR #2, not main. Foundation PR #1 also pending.
 
 | Work package | State | Acceptance |
@@ -19,7 +19,8 @@ Base: reviewed master-plan commit b0e52cf76f688de52eb1c9a9d21786c12bcb7c0e; stac
 | M00.5g persistent evidence pipeline | IMPLEMENTED / FIXTURE_PASS | 5 new integration tests; 22 Node entries total, 14 verified blobs |
 | M00.5h shared collection and receipt recovery | IMPLEMENTED / FIXTURE_PASS | 38 Node test entries; 18 tested blobs; strict typecheck; selected PR #4 work reconciled |
 | M00.6a Ollama metadata summarizer | IMPLEMENTED / FIXTURE_PASS | 12 new Node tests, strict typecheck; documented tags/ps schema |
+| M00.6b local Ollama HTTP probe | IMPLEMENTED / FIXTURE_PASS | 8 new actual loopback HTTP tests; 12 metadata regression tests; no live Ollama invocation |
 | M00.6 actual model/runtime inventory | PLANNED (partial probe) | approved runtime metadata and benchmark; no inference benchmark yet |
 | M01–M12 | PLANNED | dependency gates in master plan |
 
-Next exact task: bind the metadata summarizer to an owner-approved local read-only transport and collect current model observations privately; add MLX inventory and benchmark contract. Remaining consolidated regression, retention approval, actual per-repository audit and Core terminal mapping are outstanding. M00 incomplete, M01 acceptance gated. No release or merge.
+Next exact task: add provider-neutral benchmark contract and MLX metadata discovery; invoke Ollama probe only in approved Core scope. Private retention and actual per-repository audit remain outstanding; PR #4 has additional receipt-policy work not reconciled. M00 incomplete; M01 acceptance gated. No release or merge.
