@@ -54,7 +54,8 @@ export function createLocalOllamaProbe(resolveApprovedPort: ApprovedOllamaPortRe
   if (typeof resolveApprovedPort !== 'function') throw new Error('invalid Ollama endpoint resolver');
   return async function probeLocalOllama(deadlineMs = 2000): Promise<LocalProbe> {
     if (!Number.isSafeInteger(deadlineMs) || deadlineMs < 1 || deadlineMs > 10000) throw new Error('invalid local probe configuration');
-    const port = resolveApprovedPort();
+    let port: number;
+    try { port = resolveApprovedPort(); } catch { throw new Error('approved Ollama endpoint unavailable'); }
     if (!Number.isSafeInteger(port) || port < 1 || port > 65535) throw new Error('invalid approved Ollama endpoint');
     const tags = await read(port, '/api/tags', deadlineMs);
     const ps = await read(port, '/api/ps', deadlineMs);
