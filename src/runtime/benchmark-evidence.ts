@@ -51,7 +51,7 @@ export function benchmarkExecutionFingerprint(identity: BenchmarkExecutionIdenti
     runtimeVersion: value.runtimeVersion,
     hostDigest: value.hostDigest,
   };
-  return createHash('sha256').update('dvir-core:benchmark-execution:v1\\0').update(JSON.stringify(canonical)).digest('hex');
+  return createHash('sha256').update('dvir-core:benchmark-execution:v1\0').update(JSON.stringify(canonical)).digest('hex');
 }
 
 // Private measurement digest, not an authentication credential or a public report field.
@@ -59,7 +59,7 @@ export function benchmarkExecutionFingerprint(identity: BenchmarkExecutionIdenti
 export function benchmarkMeasurementDigest(input: unknown): string {
   const batch = snapshot(input);
   summarizeBenchmark(batch);
-  return createHash('sha256').update('dvir-core:benchmark:v1\\0').update(JSON.stringify(batch)).digest('hex');
+  return createHash('sha256').update('dvir-core:benchmark:v1\0').update(JSON.stringify(batch)).digest('hex');
 }
 function timestamp(value: unknown): value is number {
   return typeof value === 'number' && Number.isSafeInteger(value) && value >= 0;
