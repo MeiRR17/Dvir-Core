@@ -1,4 +1,8 @@
 # Changelog
+## 0.0.19 — 2026-11-25 (unreleased)
+- Connect benchmark review to authenticated local receipt storage; fail closed on missing, unsafe, expired or tampered evidence.
+- Eight new integration tests and seventeen regression tests passed in an isolated filesystem fixture environment; strict typecheck passed. No live inference or process-crash fault injection.
+
 ## 0.0.18 — 2026-11-25 (unreleased)
 - Add private HMAC-authenticated benchmark receipt file store with bounded reads and immutable atomic publication.
 - Nine isolated filesystem tests and strict TypeScript check passed; no live inference or production key provisioning.

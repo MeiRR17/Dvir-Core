@@ -42,3 +42,7 @@ Use exact ordered normalized measurement digests instead of aggregate hashes, a 
 
 ## 0.0.18 — benchmark receipt storage
 Use a dedicated directory and separate HMAC domain from inventory receipts; preserve existing inventory storage unchanged. Reuse its bounded read/atomic publication pattern; consolidate the shared filesystem primitives in a later tested increment rather than altering existing receipt format now. Caller provides trusted directory, key and clock. No encryption, automatic deletion, key rotation or inference attestation claimed.
+
+
+## 0.0.19 — read-only stored benchmark review
+Compose the existing verifier and store without introducing a second signing interface. Fixtures and unmeasured inputs never open storage. Missing or unsafe storage fails closed; orphan temporary files are ignored without automatic deletion. Caller authorization, key provisioning, retention, process-crash testing and shared filesystem primitives remain outstanding.
