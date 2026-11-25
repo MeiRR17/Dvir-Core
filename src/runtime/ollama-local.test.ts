@@ -33,4 +33,4 @@ test('invalid approved port, resolver error or deadline rejected before network'
   for (const port of [0,65536,1.5]) await assert.rejects(createLocalOllamaProbe(() => port)(), /invalid approved Ollama endpoint/);
   await assert.rejects(createLocalOllamaProbe(() => { throw new Error('private endpoint detail'); })(), /approved Ollama endpoint unavailable/);
   for (const ms of [0,10001,1.5]) await assert.rejects(createLocalOllamaProbe(() => 11434)(ms), /invalid local probe configuration/);
-}));
+});
