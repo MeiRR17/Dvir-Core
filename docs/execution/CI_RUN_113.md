@@ -22,7 +22,7 @@ The split is a reporting boundary only; `npm test` remains the single full-suite
 - `src/runtime/mlx-inventory.test.ts(61,3)`: Node parse error `ERR_INVALID_TYPESCRIPT_SYNTAX`; TypeScript reports `TS1005: ';' expected`.
 - `src/runtime/ollama-local.test.ts(36,3)`: same parser and compiler error.
 
-Both final direct test callbacks close with an extra parenthesis. Agent B owns `src/runtime/**`; Agent A did not edit runtime source or fixtures. The exact fix and runtime review remain pending from B.
+The two extra closing parentheses were introduced by Agent A while adapting the B-supplied test fixtures to the candidate's owner-configured probe factories. The corresponding PR #13 source tests at B's input SHA were syntactically valid. Agent A corrected only the two final delimiters in the candidate: `src/runtime/mlx-inventory.test.ts` commit `a7145f28fcb5b450b40d3ffd66a3a8381cd0cf1c` and `src/runtime/ollama-local.test.ts` commit `b81bc994a0d84dd758a2af916b221083fc6c28a3`. PR #13 remains unchanged. Run #113 is historical evidence for the pre-fix candidate; CI revalidation on the new HEAD is pending. Agent B's read-only review of the integrated runtime trust boundaries remains pending.
 
 ## Strict typecheck
 
