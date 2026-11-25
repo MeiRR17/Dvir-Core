@@ -1,6 +1,6 @@
 # M00 branch reconciliation — 2026-11-25
 
-Status: one candidate remains open; selected inventory/storage adaptations have prior fixture evidence. Fourteen runtime source/test files from B's exact input have now been integrated and hardened, but the integrated runtime tests and full regression are NOT_RUN. No source branch or legacy PR was merged, closed or deleted.
+Status: one candidate remains open; selected inventory/storage adaptations have prior fixture evidence. Fourteen runtime source/test files from B's exact input have now been integrated and hardened. CI run #123 passes inventory/storage 105/105, runtime 71/71 and strict TypeScript with zero diagnostics on exact SHA b81bc994a0d84dd758a2af916b221083fc6c28a3. No source branch or legacy PR was merged, closed or deleted.
 
 ## Fixed inputs and candidate
 
@@ -48,4 +48,4 @@ A/B comparison was diverged (A 46 commits ahead of merge base; B 26 commits ahea
 - Prepared receipt recovery and explicit ambiguous-publication status.
 - Inventory owner-case normalization and typed permission-denial classification.
 - Connector late-response cancellation check.
-- Prior targeted inventory/storage fixture run: 39 Node test entries and strict TypeScript check of 21 files passed on snapshot af5eafddf7accf069dd4993ec9502b265fec8160. It does not cover the later runtime files. Runtime tests/full strict typecheck on the integrated tree are NOT_RUN; no CI result observed.
+- Prior targeted inventory/storage fixture run: 39 Node test entries and strict TypeScript check of 21 files passed on snapshot af5eafddf7accf069dd4993ec9502b265fec8160. It does not cover the later runtime files. Latest split CI run #123 on exact candidate SHA b81bc994a0d84dd758a2af916b221083fc6c28a3: inventory/storage 105/105 PASS; runtime 71/71 PASS; strict TypeScript zero diagnostics. See docs/execution/CI_RUN_123.md. This is fixture validation only; no live host probe, inference or benchmark has occurred.
