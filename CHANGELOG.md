@@ -1,4 +1,9 @@
 # Changelog
+## 0.0.9 — 2026-11-25 (unreleased)
+- Owner-scoped GitHub connector response adapter with bounded request validation and metadata minimization.
+- Eight tests and strict typecheck; remote blobs matched; separate real connector schema observation.
+- No live adapter invocation, deployment or merge.
+
 ## 0.0.8 — 2026-11-25 (unreleased)
 - Hard-capped receipt file reads, runtime type checks and duplicate retry denial.
 - 13 new checks plus 18 receipt-store regression checks, strict typecheck and approved-host runtime primitive check.
