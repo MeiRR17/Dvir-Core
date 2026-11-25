@@ -34,3 +34,7 @@
 - v0.0.14: explicit local-only metadata probe via Node HTTP to fixed 127.0.0.1 and two GET routes. Default port 11434, caller-selected numeric port for approved service/test only; no endpoint authentication or service identity proof. Per-route time and 1 MiB body bounds, no redirect, no proxy, no retries, no inference or cloud fallback. Independent sanitized status for each route; no raw model records returned. Actual deployment requires approved Core scope.
 
 - v0.0.15: bounded pure benchmark reducer for local Ollama/MLX inputs, median first-token latency and decode throughput, complete-only peak process memory and success counts. Caller-supplied source label is not proof of execution. No raw prompts or model IDs in summary; no inference, runtime selection, or live integration. MLX discovery remains pending.
+
+
+## 0.0.17 — benchmark evidence contract
+Use exact ordered normalized measurement digests instead of aggregate hashes, a trusted private receipt resolver, explicit approved workload identity and a provisional maximum receipt lifetime of 24 hours. Unmatched local summaries remain unavailable; fixture results retain their label. This is a binding contract, not an authentication or execution claim. Authenticated persistence, trusted clocks and actual local evaluation remain gated.

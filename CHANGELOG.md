@@ -1,4 +1,8 @@
 # Changelog
+## 0.0.17 — 2026-11-25 (unreleased)
+- Bind benchmark measurement samples to scoped, revision-specific, time-limited private receipts; suppress unmatched local summaries.
+- Eight new isolated tests and strict TypeScript check passed. No live inference or authenticated resolver integration.
+
 ## 0.0.16 — 2026-11-25 (unreleased)
 - Add bounded, read-only MLX distribution-directory discovery for mlx, mlx-lm and mlx-vlm without importing Python packages or reading model caches.
 - Seven isolated filesystem fixture tests and strict typecheck passed. No live MLX discovery or inference.

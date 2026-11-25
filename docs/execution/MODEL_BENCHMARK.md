@@ -6,3 +6,5 @@ No benchmark recorded. Approved-project read-only runtime discovery completed; d
 0.0.5: existing terminal read-only probe counted listed and resident models and parsed listed storage-size units; exit 0. These are point-in-time inventory observations, not RAM requirements, measured disk use, inference results or performance benchmarks. Detailed observations stay outside public Git.
 
 0.0.16: MLX distribution-directory discovery implemented and tested on temporary fixtures; no live package inventory, imports, model loading or benchmark performed.
+
+0.0.17: receipt review contract implemented with exact ordered measurement digest, scope/revision/workload matching and freshness. Eight fixture tests passed; no actual benchmark or production authenticated resolver. A matched receipt is not independent proof of inference.
