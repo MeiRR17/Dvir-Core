@@ -24,3 +24,5 @@
 - D015 (0.0.9): expose read-only stored-review adapter binding one owner and one clock for receipt verification and review reduction. Invalid configuration rejected; missing or altered receipts remain unknown. Synthetic fixture integration is not live connector, production evidence, or crash durability qualification. No new service, key provisioning, or permission expansion.
 
 - v0.0.10: compose existing collector, reader from PR #12 and review engine; keep minimized pages in memory, return aggregate-only result, never resolve evidence on incomplete enumeration, sanitize invalid review errors. Injected resolver allows existing private store integration without creating another store. No live adapter execution or actual source authenticity claim. Base 2af0d0b; previous draft PRs preserved.
+
+- v0.0.11: compose existing pipeline and authenticated receipt store; use one snapshot of owner/time configuration and open store before provider invocation. No writes, no credentials persisted, no raw results returned. Continue PR #13 to avoid draft proliferation; parallel PR #4 has additional work not integrated yet.
