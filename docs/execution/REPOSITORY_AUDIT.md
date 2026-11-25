@@ -95,3 +95,18 @@ The following are exact Git blob SHAs of the source documents inspected in this 
 | netload | README.md | 5ad321bfd3ab989150bbf264693bc93a71d9dd87 |
 | Eruv | README.md | 7fb87491f8ade0bfbcf6c497132ee1b2b01ba280 |
 | CivicFlow | README.md | 22cd7feec6b82af9294d9b11fdb93908d92b8d89 |
+
+
+## Runtime and manifest compatibility
+
+- Dvir OS R1 package manifest: Node engine >=22.18; TypeScript dependency range ^5.8.0; its lockfile resolves TypeScript 5.9.3 and @types/node 22.20.5. Its verification script enforces TypeScript-only product source, with two exact-SHA legacy admin-script exceptions that are not product/runtime.
+- Autopilot package manifest requires Node >=24. It is a separate local supervisor; Core should use a typed process/API adapter rather than assuming a shared Node runtime or duplicating its browser/job lifecycle.
+- Root package manifests were not found at the probed paths for Apex, Corpora, Neo4j, Blog, Music and Timeline. This is not evidence that those repositories lack manifests; nested workspaces and other build systems remain unsearched.
+- The candidate now contains .github/workflows/m00-candidate.yml, which pins Node 22.18.0, TypeScript 5.9.3 and @types/node 22.20.5 for all inventory/storage tests and strict typecheck. Workflow syntax was parsed locally; no GitHub Actions result has yet been observed.
+- The earlier isolated fixture run used Node 22.16.0, TypeScript 5.8.3 and @types/node 25.1.0. Node 22.16 is below Dvir OS's declared >=22.18 engine and the package versions differ from its lockfile. Treat that run as targeted fixture evidence only; the pinned workflow must pass before claiming toolchain compatibility.
+
+Additional exact manifest references:
+- dvir-os package.json: a8fdf2497cdbf48ddf6329f74073ef8056462925
+- dvir-os package-lock.json: e537cad9e00a30ce831f9bb43064022c7c725f48
+- dvir-os TypeScript-only enforcement: c9dcb9129bccfdbcedcaf45a796071d4ee12ffc7
+- autopilot package.json: 83ca17aa082d32972416a16453830a3d0ffde98f
