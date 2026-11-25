@@ -1,4 +1,9 @@
 # Changelog
+## 0.0.5 — 2026-11-25 (unreleased)
+- Per-repository decision and archive coverage reducer with strict scope, unique IDs and opaque evidence handles.
+- Fifteen targeted fixture checks and strict erasable-syntax typecheck; real decision audit and receipt resolution still pending.
+- Read-only aggregate model inventory probe; no model execution.
+
 ## 0.0.4 — 2026-11-25 (unreleased)
 - Typed capability ownership boundaries and source-reviewed dependency matrix.
 - Full fixture regression: five scripts, 75 reported checks; strict erasable-syntax typecheck.
