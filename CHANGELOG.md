@@ -1,4 +1,9 @@
 # Changelog
+## 0.0.8 — 2026-11-25 (unreleased)
+- Hard-capped receipt file reads, runtime type checks and duplicate retry denial.
+- 13 new checks plus 18 receipt-store regression checks, strict typecheck and approved-host runtime primitive check.
+- Review integration and crash durability remain pending.
+
 ## 0.0.7 — 2026-11-25 (unreleased)
 - Authenticated private receipt file-store candidate with immutable publication and logical retention.
 - 18 filesystem fixture checks and strict TypeScript verification; approved-host HMAC primitive smoke.
