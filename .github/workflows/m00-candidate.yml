@@ -56,8 +56,11 @@ jobs:
           npm --version
           "$RUNNER_TEMP/dvir-core-tools/node_modules/.bin/tsc" --version
 
-      - name: Run all inventory, runtime and storage tests
-        run: npm test
+      - name: Run inventory and authenticated storage tests (Agent A)
+        run: npm run test:inventory-storage
+
+      - name: Run local runtime tests (Agent B)
+        run: npm run test:runtime
 
       - name: Strict typecheck all inventory, runtime and storage TypeScript
         if: ${{ always() && steps.install_typecheck_tools.outcome == 'success' }}
