@@ -1,4 +1,4 @@
-# Execution status — 0.0.12 (2026-11-25)
+# Execution status — 0.0.13 (2026-11-25)
 Base: reviewed master-plan commit b0e52cf76f688de52eb1c9a9d21786c12bcb7c0e; stacked on draft plan PR #2, not main. Foundation PR #1 also pending.
 
 | Work package | State | Acceptance |
@@ -18,7 +18,8 @@ Base: reviewed master-plan commit b0e52cf76f688de52eb1c9a9d21786c12bcb7c0e; stac
 | M00.5f receipt write recovery classification | IMPLEMENTED / FIXTURE_PASS | six recovery tests, injected file/directory fsync failures, 39 regression checks |
 | M00.5g bounded collected review pipeline | IMPLEMENTED / FIXTURE_PASS | 10 new tests; all 12 fixture files and strict typecheck pass |
 | M00.5h GitHub connector shape adapter | IMPLEMENTED / FIXTURE_PASS + LIVE_SCHEMA_OBSERVED | owner-filtered live envelope, ID, archive and visibility observations; 10 new tests, 13-file regression |
+| M00.5i scoped receipt preparation and retention policy | IMPLEMENTED / FIXTURE_PASS | 17 targeted tests; proposed policy, not approved retention |
 | M00.6 actual model/runtime inventory | PLANNED (partial probe) | approved runtime metadata and benchmark; no inference benchmark yet |
 | M01–M12 | PLANNED | dependency gates in master plan |
 
-Next exact task: design a scoped private audit receipt provisioning and retention path; complete the actual per-repository decisions and runtime benchmark only under approved scope. Live connector schema was observed but injected TypeScript adapter has not executed against the live connector. Core terminal mapping, retention authorization, actual crash and macOS durability remain unverified. M00 incomplete; M01 acceptance gated. No merge or release.
+Next exact task: implement verification of private evidence binding on receipt resolution and a bounded audit intake contract. Authenticate owner approval and provision private storage only through an explicitly approved path. Complete real per-repository decisions and host/model benchmark under approved scope. M00 remains incomplete: Core terminal mapping OWNER_BLOCKED; no live adapter execution, actual crash or macOS durability verification. M01 acceptance gated. No merge or release.
