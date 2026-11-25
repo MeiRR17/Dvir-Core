@@ -9,3 +9,5 @@
 | Corpora / Neo4j / Apex / Autopilot / Hermes | reuse candidates | full source/contract audit outstanding |
 
 No install, permission expansion, public endpoint or duplicate terminal server.
+
+0.0.2: added injectable bounded page reader for normalized connector-shaped repository responses, synthetic only. Related dependency default-branch/PR metadata refreshed; full interface, license and overlap audit pending. Existing terminal remains the sole approved execution channel for local host checks.
