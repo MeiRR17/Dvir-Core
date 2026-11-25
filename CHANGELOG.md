@@ -1,4 +1,5 @@
 ## 0.0.18 — 2026-11-25 (unreleased; runtime integration candidate)
+- First pinned integrated CI execution (Node 22.18.0): 158/160 test entries passed; MLX and Ollama runtime test modules failed to parse due to extra closing parentheses. Typecheck was skipped; Agent B owns the runtime fix. No merge.
 - Completed cursor pagination of personal-owner branches for dvir-os (310), Corpora (452) and Israel Evidence Atlas (314); PR search remains capped and source/manifest audit remains partial.
 - Integrated the 14 runtime source/test files from Agent B's exact PR #13 input SHA into the sole M00 candidate; PR #13 and its branch remain unchanged.
 - Replaced arbitrary MLX filesystem paths with opaque owner-configured environment handles; added static symlink-root and symlink-ancestor denial. Added a descriptor-anchored implementation/acceptance design; descriptor-relative/openat race protection remains unimplemented and host use is blocked.
