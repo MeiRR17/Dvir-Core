@@ -1,4 +1,9 @@
 # Changelog
+## 0.0.7 — 2026-11-25 (unreleased)
+- Local HMAC-authenticated receipt store, owner and expiry checks, bounded reads, no-overwrite atomic writes.
+- 14 synthetic filesystem assertions and strict typecheck passed; matching remote blobs.
+- No real private data or server deployment.
+
 ## 0.0.6 — 2026-11-25 (unreleased)
 - Review pipeline joins validated pages, archive observations, decisions and a private receipt-reader interface.
 - Exact receipt binding and freshness checks; unresolved evidence remains unknown.
