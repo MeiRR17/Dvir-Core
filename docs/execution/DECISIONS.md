@@ -10,3 +10,5 @@
 
 - D008 (0.0.3): enforce per-page deadline (1–60000 ms; default 10000) with AbortSignal; stop on failure with prior valid coverage; no retries. Reader may ignore cancellation, so never claim transport actually stopped. Only typed transport errors can classify rate limits; no raw error detail in results.
 - D009: reviewed parallel PR #3 reducer; prefer stable ID and strict foreign-owner rejection in #4; archive-count capability may be integrated separately after review. Both PRs preserved.
+
+- D010 (0.0.4): encode capability ownership as a pure typed map, deny unknown/mismatched ownership and return copies. This is an architecture consistency check, not authorization. Preserve Dvir OS, Apex/PCI, Corpora, Neo4j, Autopilot and existing terminal ownership; Hermes remains evaluation only. See DEPENDENCY_AUDIT.md.
