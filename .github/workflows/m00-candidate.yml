@@ -31,6 +31,7 @@ jobs:
           node-version: 22.18.0
 
       - name: Install pinned typecheck tools outside the repository
+        id: install_typecheck_tools
         run: |
           npm install \
             --prefix "$RUNNER_TEMP/dvir-core-tools" \
@@ -51,6 +52,7 @@ jobs:
         run: npm test
 
       - name: Strict typecheck all inventory, runtime and storage TypeScript
+        if: ${{ always() && steps.install_typecheck_tools.outcome == 'success' }}
         run: |
           "$RUNNER_TEMP/dvir-core-tools/node_modules/.bin/tsc" \
             --noEmit \
