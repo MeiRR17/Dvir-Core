@@ -1,4 +1,4 @@
-# Execution status — 0.0.19 (2026-11-25)
+# Execution status — 0.0.20 (2026-11-25)
 Base: reviewed master-plan commit b0e52cf76f688de52eb1c9a9d21786c12bcb7c0e; stacked on draft plan PR #2, not main. Foundation PR #1 also pending.
 
 | Work package | State | Acceptance |
@@ -25,7 +25,8 @@ Base: reviewed master-plan commit b0e52cf76f688de52eb1c9a9d21786c12bcb7c0e; stac
 | M00.6e benchmark receipt binding | IMPLEMENTED / FIXTURE_PASS | eight isolated tests and strict typecheck; exact measurement digest, scope, revision, workload and freshness |
 | M00.6f authenticated benchmark receipt store | IMPLEMENTED / FIXTURE_PASS | nine filesystem tests and strict typecheck; HMAC, expiry, scope, immutable publication |
 | M00.6g stored benchmark review | IMPLEMENTED / FIXTURE_PASS | eight integration and seventeen regression tests; reopen, orphan fixture and denial checks |
+| M00.6h shared authenticated file primitives | IMPLEMENTED / FIXTURE_PASS | 32 Node test entries including 20 Inventory assertions; legacy HMAC envelopes read without migration; strict typecheck |
 | M00.6 actual model/runtime inventory | PLANNED (partial probe) | approved runtime metadata and benchmark; no inference benchmark yet |
 | M01–M12 | PLANNED | dependency gates in master plan |
 
-Next exact task: consolidate shared file-store primitives without changing inventory receipt semantics; test process-crash and filesystem failure recovery; invoke Ollama and MLX probes only in approved Core scope and perform real measurement only after approval. Private retention and actual per-repository audit remain outstanding; PR #4 has additional receipt-policy work not reconciled. M00 incomplete; M01 acceptance gated. No release or merge.
+Next exact task: add process-crash and filesystem-failure fault injection, define retention/key rotation policy, and verify macOS/Core-local behavior when an approved Core terminal scope exists; invoke Ollama and MLX probes only in approved Core scope and perform real measurement only after approval. Private retention and actual per-repository audit remain outstanding; PR #4 has additional receipt-policy work not reconciled. M00 incomplete; M01 acceptance gated. No release or merge.

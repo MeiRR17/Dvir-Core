@@ -1,3 +1,4 @@
+import { createHmac } from 'node:crypto';
 import { mkdtempSync, readFileSync, writeFileSync, chmodSync, symlinkSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -10,6 +11,15 @@ const key=Buffer.alloc(32,7);
 const receipt: Receipt={handle:'receipt:one',owner:'fixture',repositoryId:'1',decision:'adopt',revision:'a'.repeat(40),observedAt:10,expiresAt:30};
 try {
   const store=openReceiptStore(dir,'fixture',key,20);
+  const legacyPayload = JSON.stringify(receipt);
+  const legacyMac = createHmac('sha256', key).update('dvir-core:receipt:v1\0').update(legacyPayload).digest('hex');
+  writeFileSync(join(dir,'legacy.json'), JSON.stringify({version:1,payload:legacyPayload,mac:legacyMac}), {mode:0o600});
+  eq(store.read('receipt:legacy',20),undefined);
+  const legacyReceipt = {...receipt,handle:'receipt:legacy'};
+  const legacyText = JSON.stringify(legacyReceipt);
+  const legacyReceiptMac = createHmac('sha256', key).update('dvir-core:receipt:v1\0').update(legacyText).digest('hex');
+  writeFileSync(join(dir,'legacy.json'), JSON.stringify({version:1,payload:legacyText,mac:legacyReceiptMac}), {mode:0o600});
+  eq(store.read('receipt:legacy',20),legacyReceipt);
   eq(store.read(receipt.handle,20),undefined);
   store.put(receipt,20);
   eq(store.read(receipt.handle,20),receipt);
@@ -37,5 +47,5 @@ try {
   chmodSync(dir,0o755);
   rejects(()=>openReceiptStore(dir,'fixture',key,20));
   eq(store.read(receipt.handle,20),undefined);
-  console.log(`receipt store: ${checks} fixture checks passed`);
+  console.log('receipt store: ' + checks + ' fixture checks passed');
 } finally { chmodSync(dir,0o700); rmSync(dir,{recursive:true,force:true}); }

@@ -1,4 +1,8 @@
 # Changelog
+## 0.0.20 — 2026-11-25 (unreleased)
+- Extract shared authenticated JSON file primitives for Inventory and Benchmark while preserving separate HMAC domains and existing receipt formats.
+- 32 Node test entries and 20 Inventory fixture assertions passed; existing v0.0.18 benchmark envelope remains readable; strict TypeScript passed. No live Core-host run or actual process-crash fault injection.
+
 ## 0.0.19 — 2026-11-25 (unreleased)
 - Connect benchmark review to authenticated local receipt storage; fail closed on missing, unsafe, expired or tampered evidence.
 - Eight new integration tests and seventeen regression tests passed in an isolated filesystem fixture environment; strict typecheck passed. No live inference or process-crash fault injection.

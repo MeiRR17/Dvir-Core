@@ -12,3 +12,6 @@ No benchmark recorded. Approved-project read-only runtime discovery completed; d
 0.0.18: private benchmark receipt file store implemented; nine isolated filesystem tests passed. No live measurements or production key provisioning. Review integration pending.
 
 0.0.19: benchmark review now reads from authenticated storage. Eight integration and seventeen regression tests passed in isolated fixtures; no live inference, actual process crash or production integration.
+
+
+0.0.20: shared authenticated storage primitives and legacy receipt compatibility tests passed; no live inference or model performance measurement.

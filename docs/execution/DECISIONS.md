@@ -46,3 +46,6 @@ Use a dedicated directory and separate HMAC domain from inventory receipts; pres
 
 ## 0.0.19 — read-only stored benchmark review
 Compose the existing verifier and store without introducing a second signing interface. Fixtures and unmeasured inputs never open storage. Missing or unsafe storage fails closed; orphan temporary files are ignored without automatic deletion. Caller authorization, key provisioning, retention, process-crash testing and shared filesystem primitives remain outstanding.
+
+
+- D016 (0.0.20): extract filesystem envelope and atomic publication into a shared private helper, while keeping receipt schemas, policy checks and HMAC domains separate. Preserve the existing `version: 1` envelope and domain strings so v0.0.18 benchmark and Inventory files remain readable without migration. No encryption, key rotation, retention cleanup or independent proof of inference is added. Trusted directory ancestry and caller-managed keys remain mandatory; crash and fsync fault injection are still open.
